@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youngsim Jeong — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Figtree:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --disp:'Poppins'; }
+  body.figtree{ --disp:'Figtree'; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Inter',sans-serif; background:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+
+  .scroll-wrap { height:185vh; position:relative; }
+  .stage { height:100vh; width:100%; position:relative; overflow:hidden; background:var(--ink); }
+
+  /* both texts live in the SAME stage, centered, only transforms move them */
+  .name, .folio { position:absolute; left:50%; top:50%; font-family:var(--disp),sans-serif; font-weight:800;
+    letter-spacing:-0.04em; line-height:0.86; white-space:nowrap; text-align:center; }
+  .name { font-size:clamp(56px,12vw,164px); color:#fff; }
+  .name .ln { display:block; }
+  .folio { font-size:clamp(60px,15vw,210px); color:var(--ink); perspective:900px; }
+
+  .ch { display:inline-block; will-change:transform,filter,opacity; }
+
+  /* small fixed editorial labels (text only — they recolor / fade) */
+  .kicker { position:absolute; top:clamp(26px,5vw,60px); left:50%; transform:translateX(-50%);
+    font-family:var(--disp),sans-serif; font-weight:700; font-size:clamp(11px,1.1vw,13px); letter-spacing:0.22em;
+    text-transform:uppercase; color:#fff; }
+  .cue { position:absolute; bottom:clamp(24px,4vw,44px); left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px; color:#6a6a64; font-size:11px; letter-spacing:0.2em; }
+  .cue .dot { width:20px; height:32px; border:1.4px solid #45453f; border-radius:12px; position:relative; }
+  .cue .dot::after{ content:''; position:absolute; top:6px; left:50%; transform:translateX(-50%); width:3px; height:6px; border-radius:2px; background:#9a9a94; animation:drop 1.6s ease-in-out infinite; }
+  @keyframes drop{0%{opacity:0;top:6px}30%{opacity:1}70%{opacity:1;top:16px}100%{opacity:0;top:16px}}
+
+  /* corner meta on the white end-state (fade in) */
+  .corner{ position:absolute; font-size:12.5px; line-height:1.6; color:#9a9a9a; }
+  .c-tl{ top:clamp(26px,5vw,60px); left:clamp(26px,5vw,60px); }
+  .c-tr{ top:clamp(26px,5vw,60px); right:clamp(26px,5vw,60px); text-align:right; }
+  .c-bl{ bottom:clamp(26px,5vw,60px); left:clamp(26px,5vw,60px); }
+  .c-br{ bottom:clamp(26px,5vw,60px); right:clamp(26px,5vw,60px); text-align:right; font-family:var(--disp),sans-serif; font-weight:700; }
+
+  /* graceful end after the pin */
+  .tail { background:var(--paper); color:var(--ink); text-align:center; padding:14vh 6vw 16vh; }
+  .tail .t1{ font-family:var(--disp),sans-serif; font-weight:700; font-size:clamp(28px,4.5vw,52px); letter-spacing:-0.02em; }
+  .tail .t2{ color:#6b6b6b; font-size:14px; margin-top:14px; }
+
+  /* preview-only toggles (font + effect) */
+  .ctrl{ position:fixed; right:14px; z-index:60; display:flex; gap:6px; align-items:center;
+    background:rgba(20,20,20,.72); backdrop-filter:blur(6px); padding:6px; border-radius:24px; border:1px solid rgba(255,255,255,.16); mix-blend-mode:difference; }
+  .ctrl.normal{ mix-blend-mode:normal; }
+  .fontbar{ top:14px; }
+  .fxbar{ top:58px; }
+  .ctrl .lbl{ color:#aeaeae; font-size:11px; padding:0 4px 0 8px; }
+  .ctrl button{ font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:#fff; background:transparent; border:none; border-radius:18px; padding:6px 12px; cursor:pointer; }
+  .ctrl button.active{ background:#fff; color:#111; }
+</style>
+</head>
+<body>
+  <div class="ctrl normal fontbar" id="fontbar">
+    <span class="lbl">폰트</span>
+    <button data-font="poppins" class="active">Poppins</button>
+    <button data-font="figtree">Figtree</button>
+  </div>
+  <div class="ctrl normal fxbar" id="fxbar">
+    <span class="lbl">효과</span>
+    <button data-fx="rise" class="active">Rise</button>
+    <button data-fx="wave">Wave</button>
+    <button data-fx="flip">Flip 3D</button>
+    <button data-fx="blur">Blur in</button>
+    <button data-fx="scatter">Scatter</button>
+    <button data-fx="skew">Skew</button>
+    <button data-fx="pop">Pop</button>
+  </div>
+
+  <div class="scroll-wrap" id="scrollWrap">
+    <div class="stage" id="stage">
+      <div class="kicker" id="kicker">Product Designer — Brand &amp; UX</div>
+
+      <!-- protagonist name (starts big/white, recedes to a small signature) -->
+      <h1 class="name" id="name">
+        <span class="ln" data-line>Youngsim</span>
+        <span class="ln" data-line>Jeong</span>
+      </h1>
+
+      <!-- portfolio word (rises in to take the center) -->
+      <div class="folio" id="folio">Portfolio</div>
+
+      <!-- white end-state meta -->
+      <span class="corner c-tl wmeta">Selected works<br>2024 — 2026</span>
+      <span class="corner c-tr wmeta">Branding<br>UX / UI<br>Editorial</span>
+      <span class="corner c-bl wmeta">Based in Seoul, KR</span>
+      <span class="corner c-br wmeta">name@email.com</span>
+
+      <div class="cue" id="cue"><span class="dot"></span>SCROLL</div>
+    </div>
+  </div>
+
+  <section class="tail">
+    <div class="t1">Selected works ↓</div>
+    <div class="t2">여기에 실제 프로젝트 섹션이 이어집니다</div>
+  </section>
+
+  <script>
+    document.getElementById('fontbar').addEventListener('click', (e)=>{
+      const b = e.target.closest('button'); if(!b) return;
+      document.body.classList.toggle('figtree', b.dataset.font==='figtree');
+      document.querySelectorAll('#fontbar button').forEach(x=>x.classList.toggle('active', x===b));
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* split into per-letter spans (no mask, so ascenders / i-dot never clip) */
+    function split(el){
+      const t=el.textContent; el.textContent='';
+      const chars=[];
+      [...t].forEach(ch=>{ const s=document.createElement('span'); s.className='ch';
+        s.textContent = ch===' '?' ':ch; el.appendChild(s); chars.push(s); });
+      return chars;
+    }
+
+    const folioChars = split(document.getElementById('folio'));
+
+    /* "Portfolio" entrance effects (selectable) */
+    const R = gsap.utils.random;
+    const TO = { yPercent:0, autoAlpha:1, scale:1, rotationX:0, filter:'blur(0px)', x:0, y:0, rotation:0, xPercent:0, skewX:0 };
+    const effects = {
+      rise:    { from:{ yPercent:90, autoAlpha:0 }, ease:'power3.out', dur:0.6, stagger:0.05 },
+      wave:    { from:{ yPercent:110, autoAlpha:0 }, ease:'sine.out', dur:0.7, stagger:{each:0.06, from:'center'} },
+      flip:    { from:{ rotationX:-95, autoAlpha:0, transformOrigin:'50% 100% -40px' }, ease:'back.out(1.6)', dur:0.7, stagger:0.05 },
+      blur:    { from:{ filter:'blur(16px)', autoAlpha:0, scale:1.5 }, ease:'power2.out', dur:0.7, stagger:0.045 },
+      scatter: { from:{ x:()=>R(-260,260), y:()=>R(-160,160), rotation:()=>R(-90,90), autoAlpha:0 }, ease:'power3.out', dur:0.9, stagger:0.04 },
+      skew:    { from:{ xPercent:-70, skewX:28, autoAlpha:0 }, ease:'power3.out', dur:0.75, stagger:0.05 },
+      pop:     { from:{ scale:0, autoAlpha:0 }, ease:'back.out(2.4)', dur:0.6, stagger:0.05 }
+    };
+
+    let current = 'rise', tl;
+
+    function build(name){
+      current = name;
+      if(tl){ tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
+      gsap.killTweensOf(['#name','#folio','#kicker','#cue','.wmeta', folioChars]);
+
+      /* reset states */
+      gsap.set('#stage', { backgroundColor:'#0c0c0c' });
+      gsap.set('#name', { clearProps:'all' });
+      gsap.set(['#name','#folio'], { xPercent:-50, yPercent:-50 });
+      gsap.set('.wmeta', { autoAlpha:0, y:12 });
+
+      const e = effects[name];
+      tl = gsap.timeline({ scrollTrigger:{ trigger:'#scrollWrap', start:'top top', end:'bottom bottom', pin:'#stage', scrub:0.7 } });
+
+      /* background: black → clean white */
+      tl.to('#stage', { backgroundColor:'#ffffff', ease:'none', duration:1 }, 0);
+      /* name recedes to a small upper signature */
+      tl.to('#name', { top:'15%', scale:0.28, color:'#0c0c0c', ease:'power2.inOut', duration:1 }, 0);
+      tl.to('#kicker', { autoAlpha:0, y:-18, ease:'power1.in', duration:0.35 }, 0);
+      tl.to('#cue', { autoAlpha:0, ease:'none', duration:0.25 }, 0);
+      /* portfolio letters enter with the chosen effect */
+      tl.fromTo(folioChars, { ...e.from }, { ...TO, stagger:e.stagger, ease:e.ease, duration:e.dur }, 0.42);
+      /* corner meta fades in last */
+      tl.to('.wmeta', { autoAlpha:1, y:0, stagger:0.06, ease:'power2.out', duration:0.4 }, 0.66);
+
+      document.querySelectorAll('#fxbar button').forEach(x=>x.classList.toggle('active', x.dataset.fx===name));
+      ScrollTrigger.refresh();
+    }
+
+    document.getElementById('fxbar').addEventListener('click', (ev)=>{
+      const b = ev.target.closest('button'); if(!b) return;
+      window.scrollTo({ top:0, behavior:'smooth' });
+      setTimeout(()=>build(b.dataset.fx), 380);
+    });
+
+    build('rise');
+  </script>
+</body>
+</html>

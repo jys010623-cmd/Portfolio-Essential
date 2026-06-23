@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Kinetic Type (short scroll)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter','Noto Sans KR',sans-serif; background:#0a0a0a; overflow-x:hidden; }
+
+  /* short pin distance: only ~70vh of scrolling to finish the transition */
+  .scroll-wrap { height:170vh; position:relative; }
+  .stage { height:100vh; width:100%; position:relative; overflow:hidden; background:#0a0a0a; }
+
+  .hero { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 6vw; }
+  .hero .kicker { font-family:'Archivo'; font-weight:700; font-size:clamp(11px,1.2vw,14px); letter-spacing:0.22em; color:#7a7a7a; text-transform:uppercase; margin-bottom:26px; }
+  .hero .big { font-family:'Archivo'; font-weight:800; font-size:clamp(52px,11vw,150px); line-height:0.9; letter-spacing:-0.035em; color:#fff; }
+  .hero .big .line { display:block; }
+  .hero .sub { font-family:'Inter'; font-weight:300; font-size:clamp(15px,2.3vw,28px); margin-top:22px; color:#cfcfcf; }
+  .hero .meta { position:absolute; bottom:6vh; left:6vw; right:6vw; display:flex; justify-content:space-between; align-items:flex-end; font-size:clamp(11px,1.2vw,14px); color:#8f8f8f; }
+  .hero .meta b { color:#fff; font-weight:600; display:block; margin-bottom:5px; font-size:1.1em; }
+  .hero .yr { font-family:'Archivo'; font-weight:700; letter-spacing:0.05em; }
+
+  .editorial { position:absolute; inset:0; pointer-events:none; }
+  .corner { position:absolute; font-size:clamp(11px,1.2vw,15px); color:#9a9a90; line-height:1.55; }
+  .tl{ top:7vh; left:5vw; } .tc{ top:7vh; left:50%; transform:translateX(-50%); text-align:center; }
+  .tr{ top:7vh; right:5vw; text-align:right; }
+  .word { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Archivo'; font-weight:800; font-size:clamp(64px,17vw,230px); letter-spacing:-0.045em; line-height:0.8; color:#111; white-space:nowrap; }
+  .char { display:inline-block; will-change:transform,filter,opacity; }
+  .bl{ bottom:7vh; left:5vw; } .br{ bottom:7vh; right:5vw; text-align:right; font-family:'Archivo'; font-weight:700; }
+
+  .scrollcue { position:absolute; bottom:6vh; left:50%; transform:translateX(-50%); z-index:3; }
+  .scrollcue .dot { width:22px; height:36px; border:1.5px solid #4a4a4a; border-radius:14px; position:relative; }
+  .scrollcue .dot::after { content:''; position:absolute; top:7px; left:50%; transform:translateX(-50%); width:3px; height:7px; border-radius:2px; background:#9a9a9a; animation:drop 1.6s ease-in-out infinite; }
+  @keyframes drop { 0%{opacity:0; top:7px;} 30%{opacity:1;} 70%{opacity:1; top:18px;} 100%{opacity:0; top:18px;} }
+
+  /* preview-only effect switcher (not part of the design) */
+  .fxbar { position:fixed; top:14px; right:14px; z-index:50; display:flex; gap:6px; background:rgba(20,20,20,.7);
+    backdrop-filter:blur(6px); padding:6px; border-radius:24px; border:1px solid rgba(255,255,255,.12); }
+  .fxbar button { font-family:'Inter','Noto Sans KR'; font-size:12px; font-weight:500; color:#ddd; background:transparent;
+    border:none; border-radius:18px; padding:6px 12px; cursor:pointer; }
+  .fxbar button.active { background:#fff; color:#111; }
+  .fxbar .lbl { color:#9a9a9a; font-size:11px; align-self:center; padding:0 6px 0 4px; }
+
+  .index { background:#f4f3ef; color:#111; padding:10vh 5vw 14vh; }
+  .index h2 { font-family:'Archivo'; font-weight:800; font-size:clamp(20px,2.4vw,30px); margin-bottom:34px; }
+  .idx-row { display:grid; grid-template-columns:64px 1fr auto; gap:18px; align-items:baseline; padding:22px 0; border-top:1px solid #d8d7cf; }
+  .idx-row:last-child { border-bottom:1px solid #d8d7cf; }
+  .idx-num { font-family:'Archivo'; font-weight:800; font-size:clamp(22px,3vw,40px); color:#bdbcb2; }
+  .idx-title { font-family:'Archivo'; font-weight:700; font-size:clamp(18px,2.3vw,30px); letter-spacing:-0.01em; }
+  .idx-cat { font-size:clamp(12px,1.3vw,15px); color:#8a897f; margin-top:6px; }
+  .idx-tag { font-size:clamp(11px,1.2vw,13px); color:#6a695f; letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+  <div class="fxbar" id="fxbar"><span class="lbl">효과</span></div>
+
+  <div class="scroll-wrap" id="scrollWrap">
+    <div class="stage" id="stage">
+      <section class="hero">
+        <div class="kicker" id="kicker">2026 Portfolio · UX / UI Designer</div>
+        <div class="big" id="heroBig"><span class="line">Youngsim</span><span class="line">Jeong</span></div>
+        <div class="sub" id="heroSub">: Navigating Possibilities</div>
+        <div class="meta" id="heroMeta">
+          <div><b>Youngsim Jeong &nbsp;Designer</b>name@email.com · +82 10 0000 0000</div>
+          <div class="yr">SCROLL TO ENTER</div>
+        </div>
+      </section>
+      <section class="editorial">
+        <span class="corner tl">2026</span>
+        <span class="corner tc">Selected<br>Works</span>
+        <span class="corner tr">Branding<br>UX / UI<br>Editorial</span>
+        <div class="word" id="word">portfolio</div>
+        <span class="corner bl">Based in Seoul<br>2024 — 2026</span>
+        <span class="corner br">Designed by<br>OOO</span>
+      </section>
+      <div class="scrollcue" id="cue"><div class="dot"></div></div>
+    </div>
+  </div>
+
+  <section class="index">
+    <h2 data-rise>Index</h2>
+    <div class="idx-row" data-rise><span class="idx-num">01</span><span><span class="idx-title">Project One</span><div class="idx-cat">앱 UX/UI · 개인 프로젝트</div></span><span class="idx-tag">App Design</span></div>
+    <div class="idx-row" data-rise><span class="idx-num">02</span><span><span class="idx-title">Project Two</span><div class="idx-cat">웹 리디자인 · 팀 프로젝트</div></span><span class="idx-tag">Web Design</span></div>
+    <div class="idx-row" data-rise><span class="idx-num">03</span><span><span class="idx-title">Project Three</span><div class="idx-cat">브랜드 아이덴티티</div></span><span class="idx-tag">Branding</span></div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    function split(el){ const t=el.textContent; el.textContent='';
+      const a=[]; [...t].forEach(ch=>{ const s=document.createElement('span'); s.className='char';
+        s.textContent = ch===' '?' ':ch; el.appendChild(s); a.push(s); }); return a; }
+
+    const heroChars = [];
+    document.querySelectorAll('#heroBig .line').forEach(l=> heroChars.push(...split(l)));
+    const wordChars = split(document.getElementById('word'));
+
+    const TO = { autoAlpha:1, x:0, y:0, xPercent:0, yPercent:0, scale:1, rotationX:0, filter:'blur(0px)' };
+    /* each effect coordinates how Adventure LEAVES (out) and how portfolio ENTERS (in) */
+    const effects = {
+      rise: { label:'Rise',
+        out:{ yPercent:-110, autoAlpha:0, ease:'power3.inOut', stagger:{each:0.04, from:'end'} },
+        from:{ yPercent:120, autoAlpha:0 }, ease:'power3.out', dur:0.6, stagger:0.05 },
+      flip: { label:'Flip 3D',
+        out:{ rotationX:95, autoAlpha:0, transformOrigin:'50% 0% -30px', ease:'power2.in', stagger:0.04 },
+        from:{ rotationX:-95, autoAlpha:0, transformOrigin:'50% 100% -30px' }, ease:'back.out(1.6)', dur:0.7, stagger:0.05 },
+      blur: { label:'Blur in',
+        out:{ filter:'blur(16px)', scale:1.35, autoAlpha:0, ease:'power2.in', stagger:0.04 },
+        from:{ filter:'blur(16px)', autoAlpha:0, scale:1.5 }, ease:'power2.out', dur:0.7, stagger:0.045 },
+      pop:  { label:'Pop',
+        out:{ scale:0, autoAlpha:0, ease:'back.in(1.8)', stagger:0.04 },
+        from:{ scale:0, autoAlpha:0 }, ease:'back.out(2.4)', dur:0.6, stagger:0.05 }
+    };
+
+    let current='rise', tl;
+
+    function build(name){
+      current=name;
+      if(tl){ tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
+      gsap.killTweensOf([heroChars, wordChars, '#stage', '#heroSub', '#kicker', '#heroMeta', '#cue', '.editorial .corner']);
+      gsap.set('#stage', { backgroundColor:'#0a0a0a' });
+      gsap.set(heroChars, { clearProps:'all' });
+
+      const e = effects[name];
+      tl = gsap.timeline({ scrollTrigger:{ trigger:'#scrollWrap', start:'top top', end:'bottom bottom', pin:'#stage', scrub:0.7 } });
+      tl.to('#stage', { backgroundColor:'#f4f3ef', ease:'none', duration:1 }, 0);
+      tl.to(heroChars, { ...e.out, duration:0.55 }, 0);
+      tl.to(['#heroSub','#kicker'], { y:-40, autoAlpha:0, ease:'power1.in', duration:0.4 }, 0);
+      tl.to(['#heroMeta','#cue'], { autoAlpha:0, ease:'none', duration:0.3 }, 0);
+      tl.fromTo(wordChars, { ...e.from }, { ...TO, stagger:e.stagger, ease:e.ease, duration:e.dur }, 0.45);
+      tl.fromTo('.editorial .corner', { autoAlpha:0, y:14 }, { autoAlpha:1, y:0, stagger:0.07, ease:'power2.out', duration:0.4 }, 0.62);
+
+      [...document.querySelectorAll('.fxbar button')].forEach(b=>b.classList.toggle('active', b.dataset.fx===name));
+      ScrollTrigger.refresh();
+    }
+
+    const bar = document.getElementById('fxbar');
+    Object.keys(effects).forEach(k=>{
+      const b=document.createElement('button'); b.dataset.fx=k; b.textContent=effects[k].label;
+      b.onclick=()=>{ window.scrollTo({top:0,behavior:'smooth'}); setTimeout(()=>build(k),350); };
+      bar.appendChild(b);
+    });
+
+    gsap.utils.toArray('[data-rise]').forEach((el)=>{
+      gsap.from(el, { scrollTrigger:{ trigger:el, start:'top 85%' }, y:28, autoAlpha:0, duration:0.8, ease:'power2.out' });
+    });
+
+    build('rise');
+  </script>
+</body>
+</html>

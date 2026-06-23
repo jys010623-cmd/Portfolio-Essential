@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Dark to Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Inter','Noto Sans KR',sans-serif; background:#0a0a0a; color:#fff; }
+
+  /* ---- sticky dark hero ---- */
+  .stage { position:relative; }
+  .hero {
+    position:sticky; top:0; height:100vh; display:flex; flex-direction:column;
+    justify-content:center; padding:0 6vw; background:#0a0a0a; overflow:hidden;
+  }
+  .hero .kicker { font-family:'Archivo'; font-weight:700; font-size:clamp(11px,1.2vw,14px); letter-spacing:0.22em; color:#7a7a7a; text-transform:uppercase; margin-bottom:26px; }
+  .hero .big { font-family:'Archivo'; font-weight:800; font-size:clamp(52px,11vw,150px); line-height:0.9; letter-spacing:-0.035em; }
+  .hero .big .star { display:inline-block; margin-left:0.1em; }
+  .hero .sub { font-family:'Inter'; font-weight:300; font-size:clamp(15px,2.3vw,28px); margin-top:22px; color:#cfcfcf; }
+  .hero .meta { position:absolute; bottom:6vh; left:6vw; right:6vw; display:flex; justify-content:space-between; align-items:flex-end; font-size:clamp(11px,1.2vw,14px); color:#8f8f8f; }
+  .hero .meta b { color:#fff; font-weight:600; display:block; margin-bottom:5px; font-size:1.1em; }
+  .hero .yr { font-family:'Archivo'; font-weight:700; letter-spacing:0.05em; }
+  .scrollcue { position:absolute; bottom:6vh; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:#6a6a6a; font-size:11px; letter-spacing:0.2em; }
+  .scrollcue .dot { width:22px; height:36px; border:1.5px solid #4a4a4a; border-radius:14px; position:relative; }
+  .scrollcue .dot::after { content:''; position:absolute; top:7px; left:50%; transform:translateX(-50%); width:3px; height:7px; border-radius:2px; background:#9a9a9a; animation:drop 1.6s ease-in-out infinite; }
+  @keyframes drop { 0%{opacity:0; top:7px;} 30%{opacity:1;} 70%{opacity:1; top:18px;} 100%{opacity:0; top:18px;} }
+
+  /* ---- white editorial section scrolls up over hero ---- */
+  .editorial {
+    position:relative; z-index:2; background:#f4f3ef; color:#111;
+    min-height:100vh; padding:0;
+  }
+  .ed-cover { position:relative; height:100vh; }
+  .corner { position:absolute; font-size:clamp(11px,1.2vw,15px); color:#a8a89f; line-height:1.55; }
+  .tl{ top:7vh; left:5vw; } .tc{ top:7vh; left:50%; transform:translateX(-50%); text-align:center; }
+  .tr{ top:7vh; right:5vw; text-align:right; }
+  .word { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Archivo'; font-weight:800; font-size:clamp(64px,17vw,230px); letter-spacing:-0.045em; line-height:0.8; }
+  .bl{ bottom:7vh; left:5vw; } .br{ bottom:7vh; right:5vw; text-align:right; font-family:'Archivo'; font-weight:700; }
+
+  /* ---- index strip (optional continuation) ---- */
+  .index { background:#f4f3ef; color:#111; padding:8vh 5vw 12vh; border-top:1px solid #e0dfd8; }
+  .index h2 { font-family:'Archivo'; font-weight:800; font-size:clamp(20px,2.4vw,30px); letter-spacing:-0.01em; margin-bottom:34px; }
+  .idx-row { display:grid; grid-template-columns:64px 1fr auto; gap:18px; align-items:baseline; padding:22px 0; border-top:1px solid #d8d7cf; }
+  .idx-row:last-child { border-bottom:1px solid #d8d7cf; }
+  .idx-num { font-family:'Archivo'; font-weight:800; font-size:clamp(22px,3vw,40px); color:#bdbcb2; }
+  .idx-title { font-family:'Archivo'; font-weight:700; font-size:clamp(18px,2.3vw,30px); letter-spacing:-0.01em; }
+  .idx-cat { font-size:clamp(12px,1.3vw,15px); color:#8a897f; margin-top:6px; }
+  .idx-tag { font-size:clamp(11px,1.2vw,13px); color:#6a695f; letter-spacing:0.04em; }
+
+  /* reveal */
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in { opacity:1; transform:none; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <!-- 1. DARK HERO (sticky) -->
+    <section class="hero">
+      <div class="kicker">2026 Portfolio · UX / UI Designer</div>
+      <div class="big">Adventure<span class="star">✸</span></div>
+      <div class="sub">: Navigating Possibilities</div>
+      <div class="meta">
+        <div><b>김OO &nbsp;Designer</b>name@email.com · +82 10 0000 0000</div>
+        <div class="yr">SCROLL TO ENTER</div>
+      </div>
+      <div class="scrollcue"><div class="dot"></div></div>
+    </section>
+
+    <!-- 2. WHITE EDITORIAL (scrolls up over hero) -->
+    <section class="editorial">
+      <div class="ed-cover">
+        <span class="corner tl reveal">2026</span>
+        <span class="corner tc reveal">Selected<br>Works</span>
+        <span class="corner tr reveal">Branding<br>UX / UI<br>Editorial</span>
+        <div class="word reveal">portfolio</div>
+        <span class="corner bl reveal">Based in Seoul<br>2024 — 2026</span>
+        <span class="corner br reveal">Designed by<br>OOO</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- continuation: index -->
+  <section class="index">
+    <h2 class="reveal">Index</h2>
+    <div class="idx-row reveal">
+      <span class="idx-num">01</span>
+      <span><span class="idx-title">Project One</span><div class="idx-cat">앱 UX/UI · 개인 프로젝트</div></span>
+      <span class="idx-tag">App Design</span>
+    </div>
+    <div class="idx-row reveal">
+      <span class="idx-num">02</span>
+      <span><span class="idx-title">Project Two</span><div class="idx-cat">웹 리디자인 · 팀 프로젝트</div></span>
+      <span class="idx-tag">Web Design</span>
+    </div>
+    <div class="idx-row reveal">
+      <span class="idx-num">03</span>
+      <span><span class="idx-title">Project Three</span><div class="idx-cat">브랜드 아이덴티티</div></span>
+      <span class="idx-tag">Branding</span>
+    </div>
+  </section>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

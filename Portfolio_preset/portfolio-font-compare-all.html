@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font compare — all</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Roboto:wght@700;900&family=Open+Sans:wght@700;800&family=Lato:wght@700;900&family=Source+Sans+3:wght@700;900&family=IBM+Plex+Sans:wght@600;700&family=Work+Sans:wght@700;800&family=Public+Sans:wght@700;900&family=Noto+Sans:wght@700;900&family=Mulish:wght@700;900&family=Rubik:wght@700;800&family=Red+Hat+Display:wght@800;900&family=Poppins:wght@700;800&family=Montserrat:wght@700;800&family=DM+Sans:wght@700;800&family=Manrope:wght@700;800&family=Plus+Jakarta+Sans:wght@700;800&family=Figtree:wght@800;900&family=Sora:wght@700;800&family=Outfit:wght@700;800&family=Space+Grotesk:wght@700&family=Onest:wght@700;800&family=Archivo:wght@700;800&family=Schibsted+Grotesk:wght@700;900&family=Hanken+Grotesk:wght@700;800&family=Bricolage+Grotesque:wght@700;800&family=Anton&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#0c0c0c;color:#fff;padding:30px 22px 80px;transition:background .25s,color .25s;}
+  body.light{background:#ffffff;color:#0c0c0c;}
+  .wrap{max-width:1000px;margin:0 auto;}
+  h1{font-size:22px;font-weight:600;letter-spacing:-0.01em;}
+  .lead{color:#8f8f8b;font-size:14px;margin:8px 0 18px;line-height:1.6;}
+  body.light .lead{color:#777;}
+
+  .bar{position:sticky;top:0;z-index:10;display:flex;gap:8px;align-items:center;padding:10px 0 16px;margin-bottom:8px;
+    background:inherit;}
+  .bar .lbl{font-size:12px;color:#8f8f8b;margin-right:2px;}
+  .bar button{font-family:'Inter';font-size:12.5px;font-weight:500;color:inherit;background:transparent;
+    border:1px solid #3a3a36;border-radius:20px;padding:7px 14px;cursor:pointer;}
+  body.light .bar button{border-color:#ddd;}
+  .bar button.active{background:#fff;color:#111;border-color:#fff;}
+  body.light .bar button.active{background:#111;color:#fff;border-color:#111;}
+
+  .card{border:1px solid #232320;border-radius:14px;padding:20px 24px 24px;margin-bottom:14px;
+    display:grid;grid-template-columns:104px 1fr;gap:22px;align-items:center;}
+  body.light .card{border-color:#ececec;}
+  .gbig{font-size:88px;line-height:1;text-align:center;color:#ff6a3d;}
+  .meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .num{font-size:12px;color:#6a6a64;font-weight:500;}
+  .fname{font-size:14px;font-weight:600;}
+  .gnote{font-size:12.5px;color:#8a8a86;}
+  body.light .gnote{color:#888;}
+  .folio{font-size:clamp(38px,7.5vw,82px);line-height:0.92;letter-spacing:-0.03em;}
+  .name{font-size:clamp(19px,3.4vw,38px);line-height:1;letter-spacing:-0.02em;opacity:0.78;margin-top:7px;}
+  @media(max-width:620px){.card{grid-template-columns:1fr;}.gbig{font-size:66px;}}
+
+  .grp{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#6a6a64;margin:26px 0 12px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Display font 총정리 — J.Youngsim / Portfolio</h1>
+  <p class="lead">대기업·SaaS 웹에서 많이 쓰는 폰트 + 앞서 본 디스플레이체를 한자리에 모았어요. 왼쪽 <span style="color:#ff6a3d">g</span>로 모양 비교하고, 위 토글로 배경(다크/라이트)을 바꿔보세요.</p>
+
+  <div class="bar">
+    <span class="lbl">배경</span>
+    <button id="bDark" class="active">Dark</button>
+    <button id="bLight">Light</button>
+  </div>
+
+  <div class="grp">1군 · 대기업/SaaS 본문 워크호스 (중립 휴머니스트)</div>
+
+  <div class="card"><div class="gbig f1">g</div><div><div class="meta"><span class="num">01</span><span class="fname">Inter</span><span class="gnote">2층 g · Figma·GitHub 등 SaaS 표준</span></div><div class="folio f1">Portfolio</div><div class="name f1">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f2">g</div><div><div class="meta"><span class="num">02</span><span class="fname">Roboto</span><span class="gnote">2층 g · Google·안드로이드 기본</span></div><div class="folio f2">Portfolio</div><div class="name f2">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f3">g</div><div><div class="meta"><span class="num">03</span><span class="fname">Open Sans</span><span class="gnote">2층 g · 가장 보편적인 본문체</span></div><div class="folio f3">Portfolio</div><div class="name f3">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f4">g</div><div><div class="meta"><span class="num">04</span><span class="fname">Lato</span><span class="gnote">2층 g · 따뜻한 코퍼레이트 산세</span></div><div class="folio f4">Portfolio</div><div class="name f4">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f5">g</div><div><div class="meta"><span class="num">05</span><span class="fname">Source Sans 3</span><span class="gnote">2층 g · Adobe 오픈소스</span></div><div class="folio f5">Portfolio</div><div class="name f5">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f6">g</div><div><div class="meta"><span class="num">06</span><span class="fname">IBM Plex Sans</span><span class="gnote">2층 g · IBM 공식체 · 테크 신뢰감</span></div><div class="folio f6">Portfolio</div><div class="name f6">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f7">g</div><div><div class="meta"><span class="num">07</span><span class="fname">Work Sans</span><span class="gnote">2층 g · 깔끔한 그로테스크 본문</span></div><div class="folio f7">Portfolio</div><div class="name f7">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f8">g</div><div><div class="meta"><span class="num">08</span><span class="fname">Public Sans</span><span class="gnote">2층 g · 美 정부 디자인시스템</span></div><div class="folio f8">Portfolio</div><div class="name f8">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f9">g</div><div><div class="meta"><span class="num">09</span><span class="fname">Noto Sans</span><span class="gnote">2층 g · Google 다국어 표준</span></div><div class="folio f9">Portfolio</div><div class="name f9">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f10">g</div><div><div class="meta"><span class="num">10</span><span class="fname">Rubik</span><span class="gnote">2층 g · 살짝 둥근 모서리 · 친근</span></div><div class="folio f10">Portfolio</div><div class="name f10">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f11">g</div><div><div class="meta"><span class="num">11</span><span class="fname">Red Hat Display</span><span class="gnote">2층 g · Red Hat 공식 · 테크</span></div><div class="folio f11">Portfolio</div><div class="name f11">J.Youngsim</div></div></div>
+
+  <div class="grp">2군 · 모던 지오메트릭 / 라운드 (트렌디 코퍼레이트)</div>
+
+  <div class="card"><div class="gbig f12">g</div><div><div class="meta"><span class="num">12</span><span class="fname">Poppins</span><span class="gnote">단층 g · 완전 원형 지오메트릭</span></div><div class="folio f12">Portfolio</div><div class="name f12">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f13">g</div><div><div class="meta"><span class="num">13</span><span class="fname">Montserrat</span><span class="gnote">단층 g · 가장 흔한 지오메트릭 디스플레이</span></div><div class="folio f13">Portfolio</div><div class="name f13">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f14">g</div><div><div class="meta"><span class="num">14</span><span class="fname">DM Sans</span><span class="gnote">2층 g · 단정한 모던 산세</span></div><div class="folio f14">Portfolio</div><div class="name f14">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f15">g</div><div><div class="meta"><span class="num">15</span><span class="fname">Manrope</span><span class="gnote">2층 g · 반기하학 · 부드러운 모던</span></div><div class="folio f15">Portfolio</div><div class="name f15">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f16">g</div><div><div class="meta"><span class="num">16</span><span class="fname">Plus Jakarta Sans</span><span class="gnote">단층 g · 트렌디한 스타트업 감성</span></div><div class="folio f16">Portfolio</div><div class="name f16">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f17">g</div><div><div class="meta"><span class="num">17</span><span class="fname">Figtree</span><span class="gnote">2층 g · 깔끔 모던 · 900 묵직</span></div><div class="folio f17">Portfolio</div><div class="name f17">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f18">g</div><div><div class="meta"><span class="num">18</span><span class="fname">Sora</span><span class="gnote">단층 g · 기하학 디스플레이</span></div><div class="folio f18">Portfolio</div><div class="name f18">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f19">g</div><div><div class="meta"><span class="num">19</span><span class="fname">Outfit</span><span class="gnote">단층 g · 미니멀 지오메트릭</span></div><div class="folio f19">Portfolio</div><div class="name f19">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f20">g</div><div><div class="meta"><span class="num">20</span><span class="fname">Space Grotesk</span><span class="gnote">단층 g · 테크/디자인 트렌디</span></div><div class="folio f20">Portfolio</div><div class="name f20">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f21">g</div><div><div class="meta"><span class="num">21</span><span class="fname">Onest</span><span class="gnote">2층 g · Inter 계열 모던</span></div><div class="folio f21">Portfolio</div><div class="name f21">J.Youngsim</div></div></div>
+
+  <div class="grp">3군 · 디스플레이 / 그로테스크 (임팩트 큰 표지용)</div>
+
+  <div class="card"><div class="gbig f22">g</div><div><div class="meta"><span class="num">22</span><span class="fname">Archivo</span><span class="gnote">2층 g · 강한 그로테스크 (※ 처음 그 g)</span></div><div class="folio f22">Portfolio</div><div class="name f22">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f23">g</div><div><div class="meta"><span class="num">23</span><span class="fname">Schibsted Grotesk</span><span class="gnote">2층 g · 900까지 묵직 · 에디토리얼</span></div><div class="folio f23">Portfolio</div><div class="name f23">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f24">g</div><div><div class="meta"><span class="num">24</span><span class="fname">Hanken Grotesk</span><span class="gnote">2층 g · 부드러운 그로테스크</span></div><div class="folio f24">Portfolio</div><div class="name f24">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f25">g</div><div><div class="meta"><span class="num">25</span><span class="fname">Bricolage Grotesque</span><span class="gnote">2층 g · 요즘 가장 트렌디한 디스플레이</span></div><div class="folio f25">Portfolio</div><div class="name f25">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f26">G</div><div><div class="meta"><span class="num">26</span><span class="fname">Anton</span><span class="gnote">대문자 임팩트 · 초굵은 컨덴스드</span></div><div class="folio f26" style="text-transform:uppercase">Portfolio</div><div class="name f26" style="text-transform:uppercase">J.Youngsim</div></div></div>
+  <div class="card"><div class="gbig f27">G</div><div><div class="meta"><span class="num">27</span><span class="fname">Oswald</span><span class="gnote">대문자로 쓰면 소문자 g 없음 · 포스터</span></div><div class="folio f27" style="text-transform:uppercase">Portfolio</div><div class="name f27" style="text-transform:uppercase">J.Youngsim</div></div></div>
+</div>
+
+<style>
+  .f1{font-family:'Inter';font-weight:800;} .f2{font-family:'Roboto';font-weight:900;}
+  .f3{font-family:'Open Sans';font-weight:800;} .f4{font-family:'Lato';font-weight:900;}
+  .f5{font-family:'Source Sans 3';font-weight:900;} .f6{font-family:'IBM Plex Sans';font-weight:700;}
+  .f7{font-family:'Work Sans';font-weight:800;} .f8{font-family:'Public Sans';font-weight:900;}
+  .f9{font-family:'Noto Sans';font-weight:900;} .f10{font-family:'Rubik';font-weight:800;}
+  .f11{font-family:'Red Hat Display';font-weight:900;} .f12{font-family:'Poppins';font-weight:800;}
+  .f13{font-family:'Montserrat';font-weight:800;} .f14{font-family:'DM Sans';font-weight:800;}
+  .f15{font-family:'Manrope';font-weight:800;} .f16{font-family:'Plus Jakarta Sans';font-weight:800;}
+  .f17{font-family:'Figtree';font-weight:900;} .f18{font-family:'Sora';font-weight:800;}
+  .f19{font-family:'Outfit';font-weight:800;} .f20{font-family:'Space Grotesk';font-weight:700;}
+  .f21{font-family:'Onest';font-weight:800;} .f22{font-family:'Archivo';font-weight:800;}
+  .f23{font-family:'Schibsted Grotesk';font-weight:900;} .f24{font-family:'Hanken Grotesk';font-weight:800;}
+  .f25{font-family:'Bricolage Grotesque';font-weight:800;} .f26{font-family:'Anton';font-weight:400;}
+  .f27{font-family:'Oswald';font-weight:700;}
+</style>
+
+<script>
+  const d=document.getElementById('bDark'), l=document.getElementById('bLight');
+  d.onclick=()=>{document.body.classList.remove('light');d.classList.add('active');l.classList.remove('active');};
+  l.onclick=()=>{document.body.classList.add('light');l.classList.add('active');d.classList.remove('active');};
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youngsim Jeong — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{
+    --ink:#0c0c0c; --paper:#f3f1ea; --paper2:#e9e7df;
+    --accent:#ff4438; --muted-d:#8a8a86; --muted-l:#8c8b81;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard','Inter',sans-serif; background:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  .disp { font-family:'Archivo','Pretendard',sans-serif; }
+
+  /* ---------- pinned transition stage (short scroll) ---------- */
+  .scroll-wrap { height:175vh; position:relative; }
+  .stage { height:100vh; width:100%; position:relative; overflow:hidden; background:var(--ink); }
+
+  .pad { position:absolute; inset:0; padding:clamp(28px,5vw,72px); }
+
+  /* dark hero */
+  .hero { z-index:2; display:flex; flex-direction:column; justify-content:center; }
+  .sig { position:absolute; top:clamp(28px,5vw,72px); left:clamp(28px,5vw,72px); font-family:'Archivo'; font-weight:800; font-size:14px; letter-spacing:0.04em; color:#fff; }
+  .sig i { color:var(--accent); font-style:normal; }
+  .topright { position:absolute; top:clamp(28px,5vw,72px); right:clamp(28px,5vw,72px); text-align:right; font-size:12.5px; line-height:1.7; color:var(--muted-d); }
+  .kicker { font-family:'Archivo'; font-weight:700; font-size:clamp(11px,1.15vw,14px); letter-spacing:0.18em; text-transform:uppercase; color:#fff; margin-bottom:22px; }
+  .kicker b { color:var(--accent); font-weight:700; }
+  .name { font-family:'Archivo'; font-weight:800; font-size:clamp(56px,12vw,168px); line-height:0.88; letter-spacing:-0.04em; color:#fff; }
+  .name .ln { display:block; }
+  .name .mk { color:var(--accent); font-style:normal; display:inline-block; margin-left:0.06em; }
+  .tagline { font-size:clamp(15px,1.9vw,22px); font-weight:400; color:#d8d6cf; margin-top:26px; max-width:30ch; line-height:1.5; }
+  .botrow { position:absolute; left:clamp(28px,5vw,72px); right:clamp(28px,5vw,72px); bottom:clamp(26px,4vw,48px); display:flex; justify-content:space-between; align-items:flex-end; font-size:12.5px; color:var(--muted-d); }
+  .botrow .yr { font-family:'Archivo'; font-weight:700; letter-spacing:0.05em; }
+  .cue { display:flex; align-items:center; gap:9px; }
+  .cue .dot { width:20px; height:32px; border:1.4px solid #45453f; border-radius:12px; position:relative; }
+  .cue .dot::after{ content:''; position:absolute; top:6px; left:50%; transform:translateX(-50%); width:3px; height:6px; border-radius:2px; background:#9a9a94; animation:drop 1.6s ease-in-out infinite; }
+  @keyframes drop{0%{opacity:0;top:6px}30%{opacity:1}70%{opacity:1;top:16px}100%{opacity:0;top:16px}}
+
+  /* light intro (revealed) — smaller, secondary */
+  .intro { z-index:1; color:var(--ink); }
+  .intro .corner { position:absolute; font-size:12.5px; line-height:1.6; color:var(--muted-l); }
+  .intro .c-tl{ top:clamp(28px,5vw,72px); left:clamp(28px,5vw,72px); }
+  .intro .c-tr{ top:clamp(28px,5vw,72px); right:clamp(28px,5vw,72px); text-align:right; }
+  .intro .center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .intro .eyebrow { font-family:'Archivo'; font-weight:700; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
+  .intro .swork { font-family:'Archivo'; font-weight:800; font-size:clamp(40px,8vw,104px); letter-spacing:-0.03em; line-height:0.92; color:var(--ink); }
+  .intro .sub { font-size:14px; color:var(--muted-l); margin-top:18px; letter-spacing:0.02em; }
+
+  .mask{ display:inline-block; overflow:hidden; vertical-align:top; }
+  .ch{ display:inline-block; will-change:transform; }
+
+  /* ---------- light content (normal scroll) ---------- */
+  .light { background:var(--paper); color:var(--ink); }
+  .section { padding:clamp(64px,9vw,140px) clamp(28px,5vw,72px); }
+  .lab { font-family:'Archivo'; font-weight:700; font-size:12.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted-l); margin-bottom:34px; display:flex; align-items:center; gap:10px; }
+  .lab::before{ content:''; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  .about { display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(28px,5vw,80px); border-top:1px solid var(--paper2); padding-top:40px; }
+  .about p { font-size:clamp(18px,2.2vw,28px); line-height:1.55; font-weight:400; letter-spacing:-0.01em; }
+  .about p b{ font-weight:600; }
+  .about .meta { font-size:14px; color:#55554f; line-height:2; }
+  .about .meta span{ color:var(--muted-l); display:inline-block; width:84px; }
+  @media(max-width:720px){ .about{ grid-template-columns:1fr; gap:28px; } }
+
+  .idx-row { display:grid; grid-template-columns:58px 1fr auto; gap:18px; align-items:center; padding:26px 0; border-top:1px solid var(--paper2); cursor:pointer; transition:padding-left .25s ease; }
+  .idx-row:last-child{ border-bottom:1px solid var(--paper2); }
+  .idx-row:hover{ padding-left:14px; }
+  .idx-row:hover .idx-title{ color:var(--accent); }
+  .idx-num { font-family:'Archivo'; font-weight:800; font-size:clamp(20px,2.6vw,34px); color:#bdbcb2; }
+  .idx-title { font-family:'Archivo'; font-weight:700; font-size:clamp(20px,2.8vw,38px); letter-spacing:-0.02em; transition:color .2s; }
+  .idx-cat { font-size:13.5px; color:#7d7c72; margin-top:5px; font-family:'Pretendard'; }
+  .idx-tag { font-size:12.5px; color:#6a695f; letter-spacing:0.04em; font-family:'Archivo'; font-weight:600; }
+
+  /* project detail */
+  .proj { border-top:1px solid var(--paper2); }
+  .proj .head { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; }
+  .proj .pnum { font-family:'Archivo'; font-weight:800; font-size:14px; color:var(--accent); letter-spacing:0.05em; }
+  .proj h3 { font-family:'Archivo'; font-weight:800; font-size:clamp(34px,6vw,80px); letter-spacing:-0.03em; line-height:0.95; margin-top:10px; }
+  .proj .ptags { font-size:13px; color:#6a695f; line-height:1.9; text-align:right; }
+  .proj .desc { font-size:clamp(15px,1.7vw,19px); line-height:1.65; color:#3c3c38; max-width:54ch; margin-top:30px; }
+  .shots { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:46px; }
+  .shot { aspect-ratio:9/16; border-radius:12px; background:var(--ink); position:relative; overflow:hidden; }
+  .shot.alt{ background:var(--accent); }
+  .shot.lite{ background:var(--paper2); }
+  .shot .tagmini{ position:absolute; left:14px; bottom:14px; font-family:'Archivo'; font-weight:700; font-size:12px; color:rgba(255,255,255,.85); letter-spacing:0.04em; }
+  .shot.lite .tagmini{ color:#7d7c72; }
+  @media(max-width:720px){ .shots{ grid-template-columns:1fr 1fr; } }
+
+  /* footer */
+  .foot { background:var(--ink); color:#fff; padding:clamp(70px,10vw,150px) clamp(28px,5vw,72px) clamp(40px,5vw,70px); }
+  .foot .big { font-family:'Archivo'; font-weight:800; font-size:clamp(40px,8vw,108px); letter-spacing:-0.035em; line-height:0.95; }
+  .foot .big em{ font-style:normal; color:var(--accent); }
+  .foot .frow { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-top:clamp(40px,6vw,80px); border-top:1px solid #26261f; padding-top:30px; font-size:13.5px; color:var(--muted-d); }
+  .foot a{ color:#fff; text-decoration:none; border-bottom:1px solid #3a3a33; }
+  .foot a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  .rise{ opacity:0; transform:translateY(30px); }
+</style>
+</head>
+<body>
+  <!-- ============ PINNED TRANSITION ============ -->
+  <div class="scroll-wrap" id="scrollWrap">
+    <div class="stage" id="stage">
+
+      <!-- dark hero: NAME is the single protagonist -->
+      <div class="pad hero">
+        <div class="sig"><i>✳</i> YJ</div>
+        <div class="topright" id="trMeta">Seoul, KR<br>Available 2026</div>
+        <div class="kicker" id="kicker">Product Designer — <b>Brand &amp; UX</b></div>
+        <h1 class="name" id="name">
+          <span class="ln" data-line>Youngsim</span>
+          <span class="ln" data-line>Jeong<i class="mk">✳</i></span>
+        </h1>
+        <p class="tagline" id="tagline">브랜드의 문제를 구조와 타이포그래피로 풀어내는 디자이너입니다.</p>
+        <div class="botrow" id="botrow">
+          <div class="cue"><span class="dot"></span> scroll</div>
+          <div class="yr">2024 — 2026 PORTFOLIO</div>
+        </div>
+      </div>
+
+      <!-- light intro: smaller, secondary payoff -->
+      <div class="pad intro" id="intro">
+        <span class="corner c-tl">Selected works<br>2024 — 2026</span>
+        <span class="corner c-tr">Branding<br>UX / UI<br>Editorial</span>
+        <div class="center">
+          <div class="eyebrow" data-introfade>✳ Portfolio</div>
+          <div class="swork" id="swork">Selected Works</div>
+          <div class="sub" data-introfade>아래로 스크롤해 작업을 살펴보세요</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ LIGHT CONTENT ============ -->
+  <main class="light">
+
+    <section class="section">
+      <div class="lab rise">About</div>
+      <div class="about">
+        <p class="rise">정해진 답을 따르기보다 <b>“왜?”</b>를 먼저 묻습니다. 관습적인 화면을 구조로 다시 세우고, 타이포그래피로 위계를 정리해 <b>명확한 하나의 해답</b>을 제안합니다.</p>
+        <div class="meta rise">
+          <div><span>Focus</span>Brand · UX/UI · Editorial</div>
+          <div><span>Tools</span>Figma · Illustrator · After Effects</div>
+          <div><span>Email</span>name@email.com</div>
+          <div><span>Based</span>Seoul, Republic of Korea</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="lab rise">Selected works</div>
+      <div class="idx-row rise"><span class="idx-num">01</span><span><span class="idx-title disp">Mooday</span><div class="idx-cat">감정·날씨 기반 장소 추천 앱 · UX/UI</div></span><span class="idx-tag">App Design</span></div>
+      <div class="idx-row rise"><span class="idx-num">02</span><span><span class="idx-title disp">Anti-Algorithm</span><div class="idx-cat">독립 큐레이션 브랜드 아이덴티티</div></span><span class="idx-tag">Branding</span></div>
+      <div class="idx-row rise"><span class="idx-num">03</span><span><span class="idx-title disp">Sumsugui</span><div class="idx-cat">건강 습관 기록 서비스 리디자인</div></span><span class="idx-tag">Web · UX</span></div>
+    </section>
+
+    <section class="section proj">
+      <div class="head">
+        <div>
+          <div class="pnum rise">✳ 01 — Featured</div>
+          <h3 class="disp rise">Mooday</h3>
+        </div>
+        <div class="ptags rise">Role&nbsp;&nbsp;Product Designer<br>Year&nbsp;&nbsp;2025<br>Type&nbsp;&nbsp;Personal Project</div>
+      </div>
+      <p class="desc rise">사용자의 감정과 실시간 날씨를 기반으로 ‘지금 가기 좋은 장소’를 추천하는 앱. 복잡한 필터 대신 단 한 번의 감정 선택으로 결과에 도달하도록 플로우를 단순화했습니다.</p>
+      <div class="shots">
+        <div class="shot rise"><span class="tagmini">Onboarding</span></div>
+        <div class="shot alt rise"><span class="tagmini">Mood select</span></div>
+        <div class="shot lite rise"><span class="tagmini">Result map</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="foot">
+    <div class="big rise">Let’s make<br>something <em>clear.</em></div>
+    <div class="frow">
+      <div class="rise">© 2026 Youngsim Jeong · Designed in Seoul</div>
+      <div class="rise"><a href="mailto:name@email.com">name@email.com</a> &nbsp;·&nbsp; <a href="#">Instagram</a> &nbsp;·&nbsp; <a href="#">Behance</a></div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* split into masked chars for clean rise reveal */
+    function splitMasked(el){
+      const t = el.textContent; el.textContent='';
+      const inners=[];
+      [...t].forEach(ch=>{
+        const m=document.createElement('span'); m.className='mask';
+        const i=document.createElement('span'); i.className='ch';
+        i.textContent = ch===' ' ? ' ' : ch;
+        m.appendChild(i); el.appendChild(m); inners.push(i);
+      });
+      return inners;
+    }
+
+    /* name: split each line, keep the accent mark separate */
+    const nameChars=[];
+    document.querySelectorAll('#name [data-line]').forEach(line=>{
+      const mk = line.querySelector('.mk');
+      const markHTML = mk ? mk.outerHTML : '';
+      line.innerHTML = line.textContent;           /* strip mark, keep text */
+      nameChars.push(...splitMasked(line));
+      if(markHTML){ line.insertAdjacentHTML('beforeend', markHTML); }
+    });
+    const swork = splitMasked(document.getElementById('swork'));
+    gsap.set(swork, { yPercent:115 });
+    gsap.set('#intro', { autoAlpha:0 });
+    gsap.set('[data-introfade]', { autoAlpha:0, y:16 });
+
+    const tl = gsap.timeline({ scrollTrigger:{ trigger:'#scrollWrap', start:'top top', end:'bottom bottom', pin:'#stage', scrub:0.7 } });
+    /* background dark -> paper */
+    tl.to('#stage', { backgroundColor:'#f3f1ea', ease:'none', duration:1 }, 0);
+    /* name letters rise up out of their masks */
+    tl.to(nameChars, { yPercent:-115, stagger:0.025, ease:'power3.in', duration:0.5 }, 0);
+    tl.to(['#kicker','#tagline','.sig','#trMeta','#botrow'], { autoAlpha:0, y:-22, ease:'power1.in', duration:0.4 }, 0);
+    /* light intro fades up and the smaller "Selected Works" rises in */
+    tl.to('#intro', { autoAlpha:1, ease:'none', duration:0.3 }, 0.4);
+    tl.to(swork, { yPercent:0, stagger:0.04, ease:'power3.out', duration:0.5 }, 0.5);
+    tl.to('[data-introfade]', { autoAlpha:1, y:0, stagger:0.12, ease:'power2.out', duration:0.4 }, 0.62);
+
+    /* reveal-on-scroll for light content */
+    gsap.utils.toArray('.rise').forEach((el)=>{
+      gsap.to(el, { scrollTrigger:{ trigger:el, start:'top 88%' }, opacity:1, y:0, duration:0.8, ease:'power2.out' });
+    });
+  </script>
+</body>
+</html>

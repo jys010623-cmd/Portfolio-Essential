@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Schibsted+Grotesk:wght@700;900&family=Hanken+Grotesk:wght@700;800&family=Bricolage+Grotesque:wght@700;800&family=Syne:wght@700;800&family=Unbounded:wght@700;800&family=Gabarito:wght@700;900&family=Onest:wght@700;800&family=Big+Shoulders+Display:wght@700;800&family=Anton&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#0c0c0c;color:#fff;padding:34px 22px 80px;}
+  .wrap{max-width:980px;margin:0 auto;}
+  h1{font-size:22px;font-weight:600;letter-spacing:-0.01em;}
+  .lead{color:#8f8f8b;font-size:14px;margin:8px 0 30px;}
+  .card{border:1px solid #232320;border-radius:14px;padding:26px 28px 30px;margin-bottom:18px;background:#101010;}
+  .card .meta{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
+  .fname{font-size:14px;font-weight:500;color:#fff;}
+  .gnote{font-size:12.5px;color:#8a8a86;}
+  .wmax{font-size:11px;color:#6a6a64;border:1px solid #2a2a26;border-radius:20px;padding:2px 9px;}
+  .folio{font-size:clamp(46px,9vw,108px);line-height:0.9;letter-spacing:-0.035em;}
+  .name{font-size:clamp(22px,4vw,46px);line-height:0.95;letter-spacing:-0.03em;color:#cfcfcb;margin-top:10px;}
+  .g{color:#ff6a3d;} /* highlight the g so it's easy to compare */
+
+  .f1{font-family:'Sora';font-weight:800;}
+  .f2{font-family:'Schibsted Grotesk';font-weight:900;}
+  .f3{font-family:'Hanken Grotesk';font-weight:800;}
+  .f4{font-family:'Bricolage Grotesque';font-weight:800;}
+  .f5{font-family:'Syne';font-weight:800;}
+  .f6{font-family:'Unbounded';font-weight:800;}
+  .f7{font-family:'Gabarito';font-weight:900;}
+  .f8{font-family:'Onest';font-weight:800;}
+  .f9{font-family:'Big Shoulders Display';font-weight:800;}
+  .f10{font-family:'Anton';font-weight:400;}
+  .f11{font-family:'Fraunces';font-weight:900;}
+  .f12{font-family:'Instrument Serif';font-weight:400;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Display font options</h1>
+  <p class="lead">각 폰트로 직접 렌더했어요. <span class="g">주황색</span>이 g — 모양 비교해보고 번호로 골라주세요.</p>
+
+  <div class="card"><div class="meta"><span class="fname">1 · Sora</span><span class="gnote">단층 g · 기하학적 · 깔끔</span><span class="wmax">800</span></div>
+    <div class="folio f1">Portfolio</div><div class="name f1">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">2 · Schibsted Grotesk</span><span class="gnote">2층 g · 중립 그로테스크 · 900까지 묵직</span><span class="wmax">900</span></div>
+    <div class="folio f2">Portfolio</div><div class="name f2">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">3 · Hanken Grotesk</span><span class="gnote">2층 g · 둥글고 부드러운 그로테스크</span><span class="wmax">800</span></div>
+    <div class="folio f3">Portfolio</div><div class="name f3">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">4 · Bricolage Grotesque</span><span class="gnote">2층 g · 요즘 트렌디한 디스플레이 · 개성</span><span class="wmax">800</span></div>
+    <div class="folio f4">Portfolio</div><div class="name f4">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">5 · Syne</span><span class="gnote">단층 g · 아티/실험적 디스플레이</span><span class="wmax">800</span></div>
+    <div class="folio f5">Portfolio</div><div class="name f5">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">6 · Unbounded</span><span class="gnote">단층 g · 둥근 지오메트릭 · 강한 개성</span><span class="wmax">800</span></div>
+    <div class="folio f6">Portfolio</div><div class="name f6">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">7 · Gabarito</span><span class="gnote">단층 g · 모던 라운드 그로테스크</span><span class="wmax">900</span></div>
+    <div class="folio f7">Portfolio</div><div class="name f7">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">8 · Onest</span><span class="gnote">2층 g · Inter 계열 중립 산세리프</span><span class="wmax">800</span></div>
+    <div class="folio f8">Portfolio</div><div class="name f8">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">9 · Big Shoulders Display</span><span class="gnote">단층 g · 컨덴스드 · 드라마틱한 임팩트</span><span class="wmax">800</span></div>
+    <div class="folio f9">Portfolio</div><div class="name f9">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">10 · Anton</span><span class="gnote">2층 g · 초굵은 컨덴스드 포스터체</span><span class="wmax">400</span></div>
+    <div class="folio f10">Portfolio</div><div class="name f10">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">11 · Fraunces</span><span class="gnote">세리프 · 우아한 에디토리얼 대비용</span><span class="wmax">900</span></div>
+    <div class="folio f11">Portfolio</div><div class="name f11">Youngsim Jeong</div></div>
+
+  <div class="card"><div class="meta"><span class="fname">12 · Instrument Serif</span><span class="gnote">세리프 · 가볍고 클래식한 디스플레이</span><span class="wmax">400</span></div>
+    <div class="folio f12">Portfolio</div><div class="name f12">Youngsim Jeong</div></div>
+</div>
+</body>
+</html>

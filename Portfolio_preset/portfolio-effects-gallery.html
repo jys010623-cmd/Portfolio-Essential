@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinetic Type — Effect Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter','Noto Sans KR',sans-serif; background:#1c1c1c; color:#fff; padding:28px 22px 60px; }
+  .wrap { max-width:1000px; margin:0 auto; }
+  h1 { font-family:'Archivo'; font-weight:800; font-size:24px; letter-spacing:-0.01em; }
+  .lead { color:#9a9a96; font-size:14px; margin:8px 0 22px; }
+
+  .controls { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+  .btn { font-family:'Inter','Noto Sans KR'; font-size:13.5px; font-weight:500; color:#ddd; background:#2a2a2a;
+    border:1px solid #3a3a3a; border-radius:24px; padding:9px 16px; cursor:pointer; transition:all .15s; }
+  .btn:hover { background:#343434; color:#fff; }
+  .btn.active { background:#fff; color:#111; border-color:#fff; }
+  .meta-row { display:flex; align-items:center; gap:14px; margin:14px 0 12px; flex-wrap:wrap; }
+  .replay { font-size:13px; font-weight:500; color:#111; background:#ffe24d; border:none; border-radius:24px; padding:9px 18px; cursor:pointer; }
+  .ename { font-family:'Archivo'; font-weight:700; font-size:14px; color:#ffe24d; letter-spacing:0.02em; }
+  .edesc { font-size:13px; color:#8f8f8b; }
+
+  .stage { position:relative; height:62vh; min-height:380px; border-radius:14px; overflow:hidden; background:#0a0a0a;
+    display:flex; align-items:center; justify-content:center; }
+  .word { position:absolute; font-family:'Archivo'; font-weight:800; letter-spacing:-0.04em; line-height:0.85;
+    white-space:nowrap; text-align:center; }
+  #outWord { font-size:clamp(40px,9vw,120px); color:#fff; }
+  #inWord  { font-size:clamp(52px,12vw,170px); color:#111; }
+  .char { display:inline-block; will-change:transform,filter,opacity; }
+  .tag { position:absolute; bottom:18px; left:0; right:0; text-align:center; font-family:'Archivo'; font-weight:700;
+    font-size:12px; letter-spacing:0.2em; color:#b0afa6; text-transform:uppercase; }
+  .hint { color:#76766f; font-size:12.5px; margin-top:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Kinetic type — effect gallery</h1>
+  <p class="lead">버튼을 눌러 글자 전환 효과를 비교해보세요. 모든 효과에 배경 다크→라이트 전환이 함께 들어가요.</p>
+
+  <div class="controls" id="controls"></div>
+
+  <div class="meta-row">
+    <button class="replay" id="replay">▷ 다시 재생</button>
+    <span class="ename" id="ename"></span>
+    <span class="edesc" id="edesc"></span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="word" id="outWord">Adventure</div>
+    <div class="word" id="inWord">portfolio</div>
+    <div class="tag">background  dark → light</div>
+  </div>
+
+  <p class="hint">마음에 드는 효과를 고르면, 그 모션을 스크롤 진행도(ScrollTrigger scrub)에 그대로 연결해 실제 포트폴리오에 적용해드릴게요.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const R = gsap.utils.random;
+  function split(el){
+    const t = el.textContent; el.textContent='';
+    const arr=[];
+    [...t].forEach(ch=>{ const s=document.createElement('span'); s.className='char';
+      s.textContent = ch===' '?' ':ch; el.appendChild(s); arr.push(s); });
+    return arr;
+  }
+  const outChars = split(document.getElementById('outWord'));
+  const inChars  = split(document.getElementById('inWord'));
+  const stage = document.getElementById('stage');
+
+  const TO = { autoAlpha:1, x:0, y:0, xPercent:0, yPercent:0, scale:1, rotation:0, rotationX:0, rotationY:0, skewX:0, filter:'blur(0px)' };
+
+  const effects = {
+    rise:    { label:'Rise', desc:'아래에서 한 글자씩 솟아오름', ease:'power3.out', dur:0.7, stagger:0.05,
+               from:{ yPercent:120, autoAlpha:0 } },
+    wave:    { label:'Wave', desc:'가운데부터 물결치듯', ease:'sine.out', dur:0.7, stagger:{each:0.06, from:'center'},
+               from:{ yPercent:110, autoAlpha:0 } },
+    flip:    { label:'Flip 3D', desc:'X축으로 회전하며 등장', ease:'back.out(1.6)', dur:0.8, stagger:0.05,
+               from:{ rotationX:-95, autoAlpha:0, transformOrigin:'50% 100% -30px' } },
+    blur:    { label:'Blur in', desc:'흐릿하게→선명하게 + 확대', ease:'power2.out', dur:0.8, stagger:0.045,
+               from:{ filter:'blur(16px)', autoAlpha:0, scale:1.5 } },
+    scatter: { label:'Scatter', desc:'사방에서 흩어졌다 모임', ease:'power3.out', dur:0.9, stagger:0.04,
+               from:()=>({ x:R(-260,260), y:R(-160,160), rotation:R(-90,90), autoAlpha:0 }) },
+    skew:    { label:'Skew slide', desc:'기울며 좌→우로 미끄러짐', ease:'power3.out', dur:0.75, stagger:0.05,
+               from:{ xPercent:-70, skewX:28, autoAlpha:0 } },
+    pop:     { label:'Pop', desc:'작게 튀어나오는 스프링', ease:'back.out(2.4)', dur:0.7, stagger:0.05,
+               from:{ scale:0, autoAlpha:0 } }
+  };
+
+  let current = 'rise';
+  let tl;
+
+  function play(name){
+    current = name;
+    if(tl) tl.kill();
+    gsap.killTweensOf([stage, outChars, inChars]);
+
+    gsap.set(stage, { backgroundColor:'#0a0a0a' });
+    gsap.set(outChars, { clearProps:'all' });
+    gsap.set(inChars, { ...TO, autoAlpha:0 });
+
+    const e = effects[name];
+    tl = gsap.timeline();
+    tl.to(stage, { backgroundColor:'#f4f3ef', duration:1.5, ease:'power1.inOut' }, 0);
+    tl.to(outChars, { yPercent:-130, autoAlpha:0, stagger:0.03, ease:'power2.in', duration:0.5 }, 0);
+    const fromVars = (typeof e.from === 'function')
+      ? { ...e.from(), stagger:e.stagger, ease:e.ease, duration:e.dur }
+      : { ...e.from, stagger:e.stagger, ease:e.ease, duration:e.dur };
+    tl.fromTo(inChars, fromVars, { ...TO, stagger:e.stagger, ease:e.ease, duration:e.dur }, 0.55);
+
+    document.getElementById('ename').textContent = e.label;
+    document.getElementById('edesc').textContent = '— ' + e.desc;
+    [...document.querySelectorAll('.btn')].forEach(b=>b.classList.toggle('active', b.dataset.fx===name));
+  }
+
+  const ctr = document.getElementById('controls');
+  Object.keys(effects).forEach(k=>{
+    const b = document.createElement('button');
+    b.className='btn'; b.dataset.fx=k; b.textContent=effects[k].label;
+    b.onclick=()=>play(k); ctr.appendChild(b);
+  });
+  document.getElementById('replay').onclick=()=>play(current);
+
+  play('rise');
+</script>
+</body>
+</html>
