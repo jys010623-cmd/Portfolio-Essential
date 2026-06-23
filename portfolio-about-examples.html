@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About section — examples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --disp:'Poppins'; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Pretendard','Inter',sans-serif; background:#dcdcd8; color:var(--ink); padding:40px 20px 90px; }
+  .wrap{ max-width:1100px; margin:0 auto; }
+  .h{ text-align:center; margin-bottom:8px; font-family:var(--disp); font-weight:800; font-size:26px; }
+  .lead{ text-align:center; color:#6a6a64; font-size:14px; margin-bottom:40px; }
+
+  .ex{ margin-bottom:40px; }
+  .extag{ display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+  .exnum{ font-family:var(--disp); font-weight:800; font-size:15px; color:#8a8a86; }
+  .exname{ font-family:var(--disp); font-weight:700; font-size:18px; }
+  .exdesc{ font-size:13px; color:#6a6a64; }
+  .frame{ border-radius:12px; overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,0.14); }
+
+  /* shared inner bits */
+  .pad{ padding:clamp(34px,5vw,64px); }
+  .lab{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8a8a86; margin-bottom:24px; display:flex; align-items:center; gap:9px; }
+  .lab::before{ content:''; width:7px; height:7px; background:currentColor; opacity:.5; }
+  .photo{ background:#cfcfc8; position:relative; }
+  .photo::after{ content:'PHOTO'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#9a9a92; }
+  .rowlist{ width:100%; border-collapse:collapse; }
+  .rowlist td{ padding:13px 0; border-top:1px solid #e6e6e1; font-size:14.5px; vertical-align:top; }
+  .rowlist tr:first-child td{ border-top:none; }
+  .yr{ color:#9a9a92; white-space:nowrap; text-align:right; width:78px; font-variant-numeric:tabular-nums; }
+  .blkh{ font-family:var(--disp); font-weight:700; font-size:clamp(18px,2.2vw,24px); letter-spacing:-0.01em; margin:30px 0 8px; }
+  .blkh:first-child{ margin-top:0; }
+
+  /* ===== EX1 — Swiss editorial split (Yuna Park) ===== */
+  .e1{ background:var(--paper); }
+  .e1 .top{ display:flex; justify-content:space-between; font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.06em; color:#9a9a92; text-transform:uppercase; margin-bottom:36px; }
+  .e1 .grid{ display:grid; grid-template-columns:0.8fr 1.4fr; gap:clamp(28px,4vw,64px); align-items:start; }
+  .e1 .photo{ aspect-ratio:3/4; border-radius:6px; }
+  @media(max-width:680px){ .e1 .grid{ grid-template-columns:1fr; } }
+
+  /* ===== EX2 — Statement + pills (이혜주 soft) ===== */
+  .e2{ background:#f6f7f9; }
+  .e2 .grid{ display:grid; grid-template-columns:0.7fr 1.3fr; gap:clamp(28px,4vw,56px); align-items:center; }
+  .e2 .photo{ aspect-ratio:1; border-radius:50%; max-width:280px; }
+  .e2 .state{ font-family:var(--disp); font-weight:800; font-size:clamp(26px,3.4vw,42px); letter-spacing:-0.02em; line-height:1.15; }
+  .e2 .state em{ font-style:normal; color:#3f7be0; }
+  .e2 .p{ font-size:15px; color:#555; line-height:1.8; margin-top:16px; max-width:48ch; }
+  .e2 .pills{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:28px; }
+  .e2 .pill{ display:inline-block; background:#e3ecf9; color:#2f5fb0; font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.04em; padding:5px 13px; border-radius:20px; margin-bottom:12px; }
+  .e2 .li{ font-size:14px; color:#444; line-height:1.9; }
+  @media(max-width:680px){ .e2 .grid{ grid-template-columns:1fr; } .e2 .pills{ grid-template-columns:1fr; } }
+
+  /* ===== EX3 — Dark resume (Sujin Kim) ===== */
+  .e3{ background:#0c0c0c; color:#fff; }
+  .e3 .lab{ color:#7a7a76; }
+  .e3 .grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:clamp(24px,3vw,48px); }
+  .e3 .name{ font-family:var(--disp); font-weight:800; font-size:clamp(28px,3.4vw,44px); letter-spacing:-0.02em; }
+  .e3 .tag{ color:#cfcfcf; font-size:14px; margin:14px 0 22px; line-height:1.6; }
+  .e3 .contact{ font-size:13.5px; color:#9a9a94; line-height:2; }
+  .e3 .contact span{ color:#fff; display:inline-block; width:64px; }
+  .e3 .blkh{ color:#fff; }
+  .e3 .rowlist td{ border-top:1px solid #232320; color:#d8d8d4; }
+  .e3 .yr{ color:#7a7a76; }
+  .e3 .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .e3 .chip{ border:1px solid #33332e; border-radius:18px; padding:5px 12px; font-size:12.5px; color:#cfcfcf; }
+  @media(max-width:680px){ .e3 .grid{ grid-template-columns:1fr; } }
+
+  /* ===== EX4 — Minimal centered (no photo) ===== */
+  .e4{ background:var(--paper); text-align:center; }
+  .e4 .state{ font-family:var(--disp); font-weight:800; font-size:clamp(28px,4vw,56px); letter-spacing:-0.025em; line-height:1.15; max-width:18ch; margin:8px auto 0; }
+  .e4 .state b{ }
+  .e4 .meta{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; max-width:760px; margin:46px auto 0; text-align:left; }
+  .e4 .meta .k{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9a9a92; margin-bottom:7px; }
+  .e4 .meta .v{ font-size:14px; color:#333; line-height:1.5; }
+  @media(max-width:680px){ .e4 .meta{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="h">About / 이력서 페이지 예시</div>
+  <p class="lead">표지(리본) 다음에 올 자기소개 페이지 시안 4종. 레퍼런스 스타일별로 골라주세요 · 사진/내용은 샘플</p>
+
+  <!-- EX1 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 1</span><span class="exname">Swiss Editorial split</span><span class="exdesc">사진 + 연도 정렬 이력 (ref. Yuna Park)</span></div>
+    <div class="frame e1 pad">
+      <div class="top"><span>About</span><span>J.Youngsim</span><span>2024 — 2026</span></div>
+      <div class="grid">
+        <div class="photo"></div>
+        <div>
+          <div class="blkh">Education</div>
+          <table class="rowlist">
+            <tr><td>OO여자대학교 시각디자인과 졸업</td><td class="yr">26.02</td></tr>
+            <tr><td>OO여자고등학교 졸업</td><td class="yr">22.02</td></tr>
+          </table>
+          <div class="blkh">Experience</div>
+          <table class="rowlist">
+            <tr><td>OO 스튜디오 BX 디자인 인턴</td><td class="yr">25.07</td></tr>
+            <tr><td>대학 연계 캡스톤 프로젝트</td><td class="yr">25.03</td></tr>
+            <tr><td>교내 매거진 〈OO〉 편집·운영</td><td class="yr">24.09</td></tr>
+          </table>
+          <div class="blkh">Awards</div>
+          <table class="rowlist">
+            <tr><td>iF Design Award Shortlist</td><td class="yr">26.03</td></tr>
+            <tr><td>OO 디자인 공모전 입선</td><td class="yr">25.10</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX2 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 2</span><span class="exname">Statement + pills</span><span class="exdesc">원형 사진 + 한 줄 철학 + 포인트 컬러 (ref. 이혜주)</span></div>
+    <div class="frame e2 pad">
+      <div class="lab">About me</div>
+      <div class="grid">
+        <div class="photo"></div>
+        <div>
+          <div class="state">묻고, 흔들고, <em>정립하다.</em></div>
+          <p class="p">당연한 것에 ‘왜?’라는 물음을 던집니다. 관습적인 시각 언어를 비틀어보고 다각도로 뒤집으며 문제의 본질을 파고들어, 흔들림 속에서 찾아낸 단 하나의 명쾌한 해답을 제안합니다.</p>
+          <div class="pills">
+            <div><span class="pill">Check point</span><div class="li">· SNS·뉴미디어 콘텐츠<br>· UI/UX 기획·인터페이스<br>· 상업 인쇄물·편집</div></div>
+            <div><span class="pill">Education</span><div class="li">· OO대학교 시각디자인과<br>· 2022.03 — 2026.02</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX3 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 3</span><span class="exname">Dark resume</span><span class="exdesc">다크 배경 + 다단 이력 + 툴 칩 (ref. Sujin Kim)</span></div>
+    <div class="frame e3 pad">
+      <div class="lab">About</div>
+      <div class="grid">
+        <div>
+          <div class="name">J.Youngsim</div>
+          <div class="tag">불확실함 속에서도 기회를 찾아 나아가는 디자이너입니다.</div>
+          <div class="contact">
+            <div><span>Email</span>name@email.com</div>
+            <div><span>Tel</span>+82 10 0000 0000</div>
+            <div><span>Insta</span>@youngsim</div>
+          </div>
+          <div class="blkh">Skills</div>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span><span class="chip">After Effects</span><span class="chip">Premiere</span></div>
+        </div>
+        <div>
+          <div class="blkh">Education</div>
+          <table class="rowlist">
+            <tr><td>OO대학교 시각디자인과 졸업</td><td class="yr">26.02</td></tr>
+            <tr><td>OO고등학교 졸업</td><td class="yr">22.02</td></tr>
+          </table>
+          <div class="blkh">Experience</div>
+          <table class="rowlist">
+            <tr><td>OO UX Lab 인턴</td><td class="yr">25.08</td></tr>
+            <tr><td>OO 서포터즈 콘텐츠 마케터</td><td class="yr">25.01</td></tr>
+            <tr><td>디자인 프리랜스 (10개월)</td><td class="yr">24.06</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="blkh">Awards</div>
+          <table class="rowlist">
+            <tr><td>OO 디자인전람회 특선</td><td class="yr">25.11</td></tr>
+            <tr><td>OO 서포터즈 대상</td><td class="yr">24.12</td></tr>
+          </table>
+          <div class="blkh">Certificate</div>
+          <table class="rowlist">
+            <tr><td>GTQ 1급</td><td class="yr">23</td></tr>
+            <tr><td>컬러리스트 산업기사</td><td class="yr">22</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX4 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 4</span><span class="exname">Minimal centered</span><span class="exdesc">사진 없이 한 문장 + 메타 그리드 (가장 깔끔)</span></div>
+    <div class="frame e4 pad">
+      <div class="lab" style="justify-content:center">About</div>
+      <div class="state">사용자의 문제를 <b>구조와 타이포그래피</b>로 풀어내는 디자이너.</div>
+      <div class="meta">
+        <div><div class="k">Focus</div><div class="v">Brand · UX/UI · Editorial</div></div>
+        <div><div class="k">Tools</div><div class="v">Figma · AI · After Effects</div></div>
+        <div><div class="k">Email</div><div class="v">name@email.com</div></div>
+        <div><div class="k">Based</div><div class="v">Seoul, Korea</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

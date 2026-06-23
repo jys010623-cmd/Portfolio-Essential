@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — combined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --accent:#3f7be0; --disp:'Poppins'; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Pretendard','Inter',sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; }
+
+  .section{ padding:clamp(56px,8vw,128px) clamp(26px,5vw,72px); }
+  .inner{ max-width:1200px; margin:0 auto; }
+  .lab{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#9a9a92; margin-bottom:30px; display:flex; align-items:center; gap:9px; }
+  .lab::before{ content:''; width:7px; height:7px; background:var(--accent); display:inline-block; }
+  .photo{ background:#d2d2cc; position:relative; }
+  .photo::after{ content:'PHOTO'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#a2a29a; }
+  .blkh{ font-family:var(--disp); font-weight:700; font-size:clamp(17px,2vw,22px); letter-spacing:-0.01em; margin:30px 0 6px; }
+  .blkh:first-child{ margin-top:0; }
+  .rowlist{ width:100%; border-collapse:collapse; }
+  .rowlist td{ padding:12px 0; font-size:14.5px; vertical-align:top; }
+  .rowlist tr+tr td{ border-top:1px solid var(--rowline); }
+  .yr{ color:var(--rowyr); white-space:nowrap; text-align:right; width:72px; font-variant-numeric:tabular-nums; }
+
+  /* ===== top: light intro (statement + photo + pills) ===== */
+  .intro{ background:var(--paper); }
+  .intro .grid{ display:grid; grid-template-columns:0.72fr 1.28fr; gap:clamp(30px,5vw,72px); align-items:center; }
+  .intro .photo{ aspect-ratio:3/4; border-radius:8px; }
+  .state{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.4vw,58px); letter-spacing:-0.025em; line-height:1.12; }
+  .state em{ font-style:normal; color:var(--accent); }
+  .lead{ font-size:clamp(15px,1.5vw,17px); color:#555; line-height:1.85; margin-top:20px; max-width:50ch; }
+  .pills{ display:flex; flex-wrap:wrap; gap:28px; margin-top:30px; }
+  .pill{ display:inline-block; background:#e7eefb; color:#2f5fb0; font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.04em; padding:5px 13px; border-radius:20px; margin-bottom:12px; }
+  .li{ font-size:14px; color:#444; line-height:1.95; }
+  @media(max-width:720px){ .intro .grid{ grid-template-columns:1fr; } .intro .photo{ max-width:320px; } }
+
+  /* ===== bottom: dark resume band ===== */
+  .resume{ background:var(--ink); color:#fff; --rowline:#242420; --rowyr:#7a7a76; }
+  .resume .lab{ color:#7a7a76; }
+  .resume .grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:clamp(26px,3.4vw,54px); align-items:start; }
+  .resume .name{ font-family:var(--disp); font-weight:800; font-size:clamp(28px,3.2vw,42px); letter-spacing:-0.02em; }
+  .resume .tag{ color:#cfcfcf; font-size:14px; margin:14px 0 22px; line-height:1.65; max-width:34ch; }
+  .resume .contact{ font-size:13.5px; color:#9a9a94; line-height:2.05; }
+  .resume .contact span{ color:#fff; display:inline-block; width:60px; }
+  .resume .blkh{ color:#fff; }
+  .resume .rowlist td{ color:#d8d8d4; }
+  .resume .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .resume .chip{ border:1px solid #33332e; border-radius:18px; padding:5px 12px; font-size:12.5px; color:#cfcfcf; }
+  @media(max-width:720px){ .resume .grid{ grid-template-columns:1fr; } }
+
+  .rise{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease; }
+  .rise.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+  <!-- TOP: light intro -->
+  <section class="section intro">
+    <div class="inner">
+      <div class="lab rise">About me</div>
+      <div class="grid">
+        <div class="photo rise"></div>
+        <div>
+          <div class="state rise">묻고, 흔들고, <em>정립하다.</em></div>
+          <p class="lead rise">당연한 것에 ‘왜?’라는 물음을 던집니다. 관습적인 시각 언어를 비틀어보고 다각도로 뒤집으며 문제의 본질을 파고들어, 흔들림 속에서 찾아낸 단 하나의 명쾌한 해답을 제안합니다.</p>
+          <div class="pills rise">
+            <div><span class="pill">Focus</span><div class="li">· 브랜드 아이덴티티 · BX<br>· UI/UX 기획·인터페이스<br>· 편집·인쇄물 디자인</div></div>
+            <div><span class="pill">Education</span><div class="li">· OO대학교 시각디자인과<br>· 2022.03 — 2026.02 졸업</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM: dark resume -->
+  <section class="section resume">
+    <div class="inner">
+      <div class="lab rise">Resume</div>
+      <div class="grid">
+        <div class="rise">
+          <div class="name">J.Youngsim</div>
+          <div class="tag">불확실함 속에서도 기회를 찾아 나아가는 디자이너입니다.</div>
+          <div class="contact">
+            <div><span>Email</span>name@email.com</div>
+            <div><span>Tel</span>+82 10 0000 0000</div>
+            <div><span>Insta</span>@youngsim</div>
+          </div>
+          <div class="blkh">Skills</div>
+          <div class="chips">
+            <span class="chip">Figma</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span><span class="chip">After Effects</span><span class="chip">Premiere</span>
+          </div>
+        </div>
+
+        <div class="rise">
+          <div class="blkh">Experience</div>
+          <table class="rowlist">
+            <tr><td>OO 스튜디오 BX 디자인 인턴</td><td class="yr">25.07</td></tr>
+            <tr><td>OO UX Lab 인턴</td><td class="yr">25.03</td></tr>
+            <tr><td>대학 연계 캡스톤 프로젝트</td><td class="yr">24.09</td></tr>
+            <tr><td>교내 매거진 〈OO〉 편집·운영</td><td class="yr">24.03</td></tr>
+          </table>
+          <div class="blkh">Education</div>
+          <table class="rowlist">
+            <tr><td>OO대학교 시각디자인과 졸업</td><td class="yr">26.02</td></tr>
+            <tr><td>OO고등학교 졸업</td><td class="yr">22.02</td></tr>
+          </table>
+        </div>
+
+        <div class="rise">
+          <div class="blkh">Awards</div>
+          <table class="rowlist">
+            <tr><td>iF Design Award Shortlist</td><td class="yr">26.03</td></tr>
+            <tr><td>OO 디자인 공모전 입선</td><td class="yr">25.10</td></tr>
+            <tr><td>OO 디자인전람회 특선</td><td class="yr">24.12</td></tr>
+          </table>
+          <div class="blkh">Certificate</div>
+          <table class="rowlist">
+            <tr><td>GTQ 1급</td><td class="yr">23</td></tr>
+            <tr><td>컬러리스트 산업기사</td><td class="yr">22</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, { threshold:0.16 });
+    document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>

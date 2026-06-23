@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>J.Youngsim — Portfolio (ribbon)</title>
+<title>J.Youngsim — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Figtree:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -41,9 +41,38 @@
   .ctrl button{ font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:#fff; background:transparent; border:none; border-radius:18px; padding:6px 12px; cursor:pointer; }
   .ctrl button.active{ background:#fff; color:#111; }
 
-  .tail{ background:var(--paper); color:var(--ink); text-align:center; padding:14vh 6vw 16vh; }
-  .tail .t1{ font-family:var(--disp),sans-serif; font-weight:800; font-size:clamp(28px,4.5vw,52px); letter-spacing:-0.02em; }
-  .tail .t2{ color:#6b6b6b; font-size:14px; margin-top:14px; }
+  /* ===== About ===== */
+  .about-sec{ background:var(--paper); color:var(--ink); padding:clamp(60px,9vw,140px) clamp(26px,5vw,72px); }
+  .inner{ max-width:1200px; margin:0 auto; }
+  .about-top{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-bottom:1px solid #e6e6e1; padding-bottom:18px;
+    font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.06em; color:#9a9a92; text-transform:uppercase; }
+
+  .intro-grid{ display:grid; grid-template-columns:0.82fr 1.18fr; gap:clamp(30px,5vw,76px); align-items:center;
+    margin:clamp(40px,6vw,84px) 0 clamp(52px,7vw,104px); }
+  .photo{ aspect-ratio:4/5; border-radius:6px; background:#d2d2cc; position:relative; }
+  .photo::after{ content:'PHOTO'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#a2a29a; }
+  .statement{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.6vw,62px); letter-spacing:-0.025em; line-height:1.08; }
+  .lead2{ font-size:clamp(15px,1.5vw,17px); color:#555; line-height:1.85; margin-top:22px; max-width:48ch; }
+  .quickmeta{ display:flex; flex-wrap:wrap; gap:34px; margin-top:32px; }
+  .quickmeta .k{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9a9a92; margin-bottom:6px; }
+  .quickmeta .v{ font-size:14px; color:#333; }
+  @media(max-width:680px){ .intro-grid{ grid-template-columns:1fr; align-items:start; } .photo{ max-width:300px; } }
+
+  .cred-lab{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#9a9a92; margin-bottom:30px; display:flex; align-items:center; gap:9px; }
+  .cred-lab::before{ content:''; width:7px; height:7px; background:var(--ink); display:inline-block; }
+  .cred-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,72px); max-width:880px; }
+  .blkh{ font-family:var(--disp); font-weight:700; font-size:clamp(16px,1.8vw,20px); letter-spacing:-0.01em; margin:26px 0 2px; }
+  .blkh:first-child{ margin-top:0; }
+  .rowlist{ width:100%; border-collapse:collapse; }
+  .rowlist td{ padding:11px 0; border-top:1px solid #e9e9e4; font-size:14px; vertical-align:top; line-height:1.4; }
+  .rowlist tr:first-child td{ border-top:none; }
+  .yr{ color:#a2a29a; white-space:nowrap; text-align:right; width:82px; font-variant-numeric:tabular-nums; }
+  .skills{ margin-top:clamp(40px,5vw,70px); border-top:1px solid #e6e6e1; padding-top:34px; display:grid; grid-template-columns:200px 1fr; gap:24px; align-items:center; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ border:1px solid #dededa; border-radius:18px; padding:6px 14px; font-size:13px; color:#444; }
+  @media(max-width:680px){ .cred-grid{ grid-template-columns:1fr; } .skills{ grid-template-columns:1fr; gap:16px; } }
+
+  .rise{ opacity:0; transform:translateY(26px); }
 </style>
 </head>
 <body>
@@ -67,9 +96,56 @@
     </div>
   </div>
 
-  <section class="tail">
-    <div class="t1">Selected works ↓</div>
-    <div class="t2">여기에 실제 프로젝트 섹션이 이어집니다</div>
+  <!-- ABOUT -->
+  <section class="about-sec">
+    <div class="inner">
+      <div class="about-top rise"><span>About</span><span>J.Youngsim — Brand &amp; UX Designer</span><span>Seoul · 2024—2026</span></div>
+
+      <!-- intro: photo + statement + key meta -->
+      <div class="intro-grid">
+        <div class="photo rise"></div>
+        <div>
+          <div class="statement rise">묻고, 흔들고,<br>정립하다.</div>
+          <p class="lead2 rise">당연한 것에 ‘왜?’라는 물음을 던집니다. 관습적인 시각 언어를 비틀어보고 다각도로 뒤집으며 문제의 본질을 파고들어, 흔들림 속에서 찾아낸 단 하나의 명쾌한 해답을 제안합니다.</p>
+          <div class="quickmeta rise">
+            <div><div class="k">Focus</div><div class="v">Brand · UX/UI · Editorial</div></div>
+            <div><div class="k">Email</div><div class="v">name@email.com</div></div>
+            <div><div class="k">Based</div><div class="v">Seoul, Korea</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- background: 2-column credentials -->
+      <div class="cred-lab rise">Background</div>
+      <div class="cred-grid">
+        <div class="rise">
+          <div class="blkh">Education</div>
+          <table class="rowlist">
+            <tr><td>OO 아카데미 UIUX 과정 수료</td><td class="yr">26.02–07</td></tr>
+            <tr><td>OO대학교 시각디자인과 졸업</td><td class="yr">26.02</td></tr>
+            <tr><td>OO고등학교 졸업</td><td class="yr">22.02</td></tr>
+          </table>
+        </div>
+        <div class="rise">
+          <div class="blkh">Awards</div>
+          <table class="rowlist">
+            <tr><td>OO 디자인 공모전 입선</td><td class="yr">25.10</td></tr>
+          </table>
+          <div class="blkh">Certificate</div>
+          <table class="rowlist">
+            <tr><td>GTQ 1급 · 컬러리스트 산업기사</td><td class="yr">23</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- skills -->
+      <div class="skills rise">
+        <div class="cred-lab" style="margin:0">Skills</div>
+        <div class="chips">
+          <span class="chip">Figma</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span><span class="chip">After Effects</span><span class="chip">Premiere Pro</span><span class="chip">InDesign</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -77,29 +153,27 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    /* build a long continuous chain so the text always overflows the screen */
     const unitBig  = 'J.Youngsim <span class="sep">—</span> Portfolio <span class="sep">—</span> ';
     const unitThin = 'Brand &amp; UX &nbsp;·&nbsp; Editorial &nbsp;·&nbsp; UI/UX &nbsp;·&nbsp; ';
     document.getElementById('segBig').innerHTML  = unitBig.repeat(8);
     document.getElementById('segThin').innerHTML = unitThin.repeat(10);
 
-    /* start the big line shifted so content covers both edges */
     gsap.set('#lineBig',  { xPercent:-12 });
     gsap.set('#lineThin', { xPercent:-40 });
 
     const tl = gsap.timeline({
       scrollTrigger:{ trigger:'#scrollWrap', start:'top top', end:'bottom bottom', pin:'#stage', scrub:0.6 }
     });
-
-    /* background black -> white (text auto-inverts via mix-blend difference) */
     tl.to('#stage', { backgroundColor:'#ffffff', ease:'none', duration:1 }, 0);
-    /* the two lines flow horizontally at different speeds → "글씨가 이어지는" 리본 */
     tl.to('#lineBig',  { xPercent:-62, ease:'none', duration:1 }, 0);
     tl.to('#lineThin', { xPercent:-8,  ease:'none', duration:1 }, 0);
-    /* scroll cue fades as you go */
     tl.to('#cue', { autoAlpha:0, ease:'none', duration:0.4 }, 0);
 
-    /* font toggle (preview only) */
+    /* About reveal on scroll */
+    gsap.utils.toArray('.rise').forEach((el)=>{
+      gsap.to(el, { scrollTrigger:{ trigger:el, start:'top 90%' }, opacity:1, y:0, duration:0.8, ease:'power2.out' });
+    });
+
     document.getElementById('fontbar').addEventListener('click', (e)=>{
       const b = e.target.closest('button'); if(!b) return;
       document.body.classList.toggle('figtree', b.dataset.font==='figtree');
