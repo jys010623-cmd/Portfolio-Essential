@@ -47,12 +47,12 @@
   .about-top{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-bottom:1px solid #e6e6e1; padding-bottom:18px;
     font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.06em; color:#9a9a92; text-transform:uppercase; }
 
-  .intro-grid{ display:grid; grid-template-columns:0.82fr 1.18fr; gap:clamp(30px,5vw,76px); align-items:center;
+  .intro-grid{ display:grid; grid-template-columns:0.55fr 1.45fr; gap:clamp(30px,5vw,76px); align-items:center;
     margin:clamp(40px,6vw,84px) 0 clamp(52px,7vw,104px); }
-  .photo{ aspect-ratio:4/5; border-radius:6px; background:#d2d2cc; position:relative; }
+  .photo{ aspect-ratio:4/5; max-width:280px; width:100%; border-radius:6px; background:#d2d2cc; position:relative; }
   .photo::after{ content:'PHOTO'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#a2a29a; }
   .statement{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.6vw,62px); letter-spacing:-0.025em; line-height:1.08; }
-  .lead2{ font-size:clamp(15px,1.5vw,17px); color:#555; line-height:1.85; margin-top:22px; max-width:48ch; }
+  .lead2{ font-size:clamp(15px,1.5vw,17px); color:#555; line-height:1.85; margin-top:22px; max-width:none; }
   .quickmeta{ display:flex; flex-wrap:wrap; gap:34px; margin-top:32px; }
   .quickmeta .k{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9a9a92; margin-bottom:6px; }
   .quickmeta .v{ font-size:14px; color:#333; }
@@ -60,28 +60,49 @@
 
   .cred-lab{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#9a9a92; margin-bottom:30px; display:flex; align-items:center; gap:9px; }
   .cred-lab::before{ content:''; width:7px; height:7px; background:var(--ink); display:inline-block; }
-  .cred-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,72px); max-width:880px; }
+  .cred-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,72px); max-width:none; }
   .blkh{ font-family:var(--disp); font-weight:700; font-size:clamp(16px,1.8vw,20px); letter-spacing:-0.01em; margin:26px 0 2px; }
   .blkh:first-child{ margin-top:0; }
   .rowlist{ width:100%; border-collapse:collapse; }
   .rowlist td{ padding:11px 0; border-top:1px solid #e9e9e4; font-size:14px; vertical-align:top; line-height:1.4; }
   .rowlist tr:first-child td{ border-top:none; }
-  .yr{ color:#a2a29a; white-space:nowrap; text-align:right; width:82px; font-variant-numeric:tabular-nums; }
+  .rowlist .org{ font-family:var(--disp); font-weight:700; }
+  .rowlist .sub{ display:block; color:#a2a29a; font-size:13px; margin-top:3px; }
+  .yr{ color:#a2a29a; white-space:nowrap; text-align:right; padding-left:16px; font-variant-numeric:tabular-nums; }
   .skills{ margin-top:clamp(40px,5vw,70px); border-top:1px solid #e6e6e1; padding-top:34px; display:grid; grid-template-columns:200px 1fr; gap:24px; align-items:center; }
   .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ border:1px solid #dededa; border-radius:18px; padding:6px 14px; font-size:13px; color:#444; }
+  .chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid #dededa; border-radius:18px; padding:6px 14px; font-size:13px; color:#444; }
+  .chip img{ width:17px; height:17px; display:block; }
+  .skillset{ display:flex; flex-direction:column; gap:15px; }
+  .skill-row{ display:grid; grid-template-columns:70px 1fr; gap:14px; align-items:center; min-height:44px; }
+  .sk-cat{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; line-height:1.35; text-transform:uppercase; color:#9a9a92; white-space:nowrap; }
+  @media(max-width:680px){ .skill-row{ grid-template-columns:1fr; gap:8px; } }
   @media(max-width:680px){ .cred-grid{ grid-template-columns:1fr; } .skills{ grid-template-columns:1fr; gap:16px; } }
+
+  /* ===== Works ===== */
+  .works-sec{ background:var(--paper); color:var(--ink); padding:0 clamp(26px,5vw,72px) clamp(70px,10vw,150px); }
+  .works-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    border-top:1px solid #e6e6e1; padding-top:clamp(40px,6vw,80px); margin-bottom:clamp(34px,4vw,56px); }
+  .works-head h2{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.6vw,62px); letter-spacing:-0.025em; line-height:1; }
+  .works-head .cnt{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#9a9a92; }
+  .works-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(26px,3.4vw,52px); }
+  .work{ cursor:default; }
+  .work .thumb{ aspect-ratio:4/3; border-radius:6px; background:#d2d2cc; position:relative; overflow:hidden; transition:transform .5s ease; }
+  .work .thumb::after{ content:attr(data-tag); position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#a2a29a; }
+  .work:hover .thumb{ transform:translateY(-6px); }
+  .work .wmeta{ display:flex; justify-content:space-between; gap:12px; margin-top:16px; }
+  .work .wt{ font-family:var(--disp); font-weight:700; font-size:clamp(17px,1.9vw,22px); letter-spacing:-0.01em; }
+  .work .wcat{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#9a9a92; white-space:nowrap; padding-top:6px; }
+  .work .wdesc{ font-size:14px; color:#666; line-height:1.7; margin-top:8px; max-width:46ch; }
+  .work .wtags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+  .work .wtag{ border:1px solid #e3e3df; border-radius:16px; padding:4px 11px; font-size:12px; color:#777; }
+  @media(max-width:680px){ .works-grid{ grid-template-columns:1fr; } }
 
   .rise{ opacity:0; transform:translateY(26px); }
 </style>
 </head>
 <body>
-  <div class="ctrl" id="fontbar">
-    <span class="lbl">폰트</span>
-    <button data-font="poppins" class="active">Poppins</button>
-    <button data-font="figtree">Figtree</button>
-  </div>
-
   <div class="scroll-wrap" id="scrollWrap">
     <div class="stage" id="stage">
       <span class="label lab-tl">J.Youngsim</span>
@@ -99,18 +120,20 @@
   <!-- ABOUT -->
   <section class="about-sec">
     <div class="inner">
-      <div class="about-top rise"><span>About</span><span>J.Youngsim — Brand &amp; UX Designer</span><span>Seoul · 2024—2026</span></div>
+      <div class="about-top rise"><span>About</span><span>J.Youngsim — Advertising &amp; UX/UI Designer</span><span>Seoul · 2024—2026</span></div>
 
       <!-- intro: photo + statement + key meta -->
       <div class="intro-grid">
         <div class="photo rise"></div>
         <div>
-          <div class="statement rise">묻고, 흔들고,<br>정립하다.</div>
-          <p class="lead2 rise">당연한 것에 ‘왜?’라는 물음을 던집니다. 관습적인 시각 언어를 비틀어보고 다각도로 뒤집으며 문제의 본질을 파고들어, 흔들림 속에서 찾아낸 단 하나의 명쾌한 해답을 제안합니다.</p>
+          <div class="statement rise">메시지를 설계하고,<br>경험으로 잇다.</div>
+          <p class="lead2 rise">광고·홍보 커뮤니케이션을 공부하며 ‘어떻게 전할 것인가’를 고민해 왔습니다. 지금은 그 메시지가 화면 위에서 매끄럽게 작동하도록, 반응형 웹 UI/UX를 배우고 있습니다. 사람을 향한 메시지와 그 메시지를 담아내는 경험을 하나로 잇는 디자이너를 지향합니다.</p>
           <div class="quickmeta rise">
-            <div><div class="k">Focus</div><div class="v">Brand · UX/UI · Editorial</div></div>
-            <div><div class="k">Email</div><div class="v">name@email.com</div></div>
-            <div><div class="k">Based</div><div class="v">Seoul, Korea</div></div>
+            <div><div class="k">Name</div><div class="v">정영심</div></div>
+            <div><div class="k">Age</div><div class="v">2001.06.23 · 26살(만 25세)</div></div>
+            <div><div class="k">Focus</div><div class="v">UX/UI · Web Design · Marketing</div></div>
+            <div><div class="k">Email</div><div class="v">jys010623@gmail.com</div></div>
+            <div><div class="k">Based</div><div class="v">경기도 성남시 분당구</div></div>
           </div>
         </div>
       </div>
@@ -119,30 +142,112 @@
       <div class="cred-lab rise">Background</div>
       <div class="cred-grid">
         <div class="rise">
+          <div class="blkh">Training</div>
+          <table class="rowlist">
+            <tr><td><span class="org">성남 그린컴퓨터아카데미</span><span class="sub">기업맞춤형 프로젝트 : AI 활용 반응형 웹 UI/UX 제작</span></td><td class="yr">2026.02–07</td></tr>
+          </table>
+
           <div class="blkh">Education</div>
           <table class="rowlist">
-            <tr><td>OO 아카데미 UIUX 과정 수료</td><td class="yr">26.02–07</td></tr>
-            <tr><td>OO대학교 시각디자인과 졸업</td><td class="yr">26.02</td></tr>
-            <tr><td>OO고등학교 졸업</td><td class="yr">22.02</td></tr>
+            <tr><td colspan="2"><span class="org" style="display:flex; justify-content:space-between; gap:16px; align-items:baseline;"><span>목원대학교 졸업</span><span style="font-family:'Pretendard','Inter',sans-serif; font-weight:400; color:#a2a29a; white-space:nowrap; font-variant-numeric:tabular-nums;">2020.03–2025.02</span></span><span class="sub" style="display:flex; justify-content:space-between; gap:16px;"><span>광고홍보커뮤니케이션학부</span><span style="white-space:nowrap;">학점 · 3.96 / 4.5</span></span><span class="sub" style="display:flex; justify-content:space-between; gap:16px;"><span>주전공 · 광고홍보전공 &nbsp;|&nbsp; 복수전공 · 언론영상콘텐츠전공</span><span style="white-space:nowrap;">학위 · 광고언론학사</span></span></td></tr>
+            <tr><td style="border-top:none;"><span class="org">강일여자고등학교 졸업</span><span class="sub">문과</span></td><td class="yr" style="border-top:none;">2019.12</td></tr>
+          </table>
+
+          <div class="blkh">Experience</div>
+          <table class="rowlist">
+            <tr><td><span class="org">워킹홀리데이</span><span class="sub">호주 · 시드니</span></td><td class="yr">2023.09–2024.04</td></tr>
+          </table>
+
+          <div class="blkh">Awards</div>
+          <table class="rowlist">
+            <tr><td><span class="org">제1회 전국 대학생 대상 메타버스 기반 홍보 마케팅 공모전 은상</span><span class="sub">(사)한국글로컬마케터양성협회</span></td><td class="yr">2022.07.27</td></tr>
           </table>
         </div>
         <div class="rise">
-          <div class="blkh">Awards</div>
-          <table class="rowlist">
-            <tr><td>OO 디자인 공모전 입선</td><td class="yr">25.10</td></tr>
-          </table>
           <div class="blkh">Certificate</div>
           <table class="rowlist">
-            <tr><td>GTQ 1급 · 컬러리스트 산업기사</td><td class="yr">23</td></tr>
+            <tr><td><span class="org">GTQ 그래픽기술자격 1급</span><span class="sub">kpc 한국생산성본부</span></td><td class="yr">2026.03.20</td></tr>
           </table>
+
+          <div class="blkh">Skills</div>
+          <div class="skillset">
+            <div class="skill-row">
+              <span class="sk-cat">Design</span>
+              <div class="chips">
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="">Photoshop</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="">Illustrator</span>
+              </div>
+            </div>
+            <div class="skill-row">
+              <span class="sk-cat">Web</span>
+              <div class="chips">
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML5</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS3</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</span>
+              </div>
+            </div>
+            <div class="skill-row">
+              <span class="sk-cat">AI</span>
+              <div class="chips">
+                <span class="chip"><img src="https://cdn.simpleicons.org/googlegemini" alt="">Gemini</span>
+                <span class="chip"><img src="https://cdn.simpleicons.org/openai" alt="">ChatGPT</span>
+                <span class="chip"><img src="https://cdn.simpleicons.org/midjourney" alt="">Midjourney</span>
+              </div>
+            </div>
+            <div class="skill-row">
+              <span class="sk-cat">Vibe<br>Coding</span>
+              <div class="chips">
+                <span class="chip"><img src="https://cdn.simpleicons.org/claude" alt="">Claude</span>
+                <span class="chip"><img src="https://cdn.simpleicons.org/openai" alt="">Codex</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="">GitHub</span>
+                <span class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="">VS Code</span>
+              </div>
+            </div>
+            <div class="skill-row">
+              <span class="sk-cat">Backend<br>&amp; Deploy</span>
+              <div class="chips">
+                <span class="chip"><img src="https://cdn.simpleicons.org/supabase" alt="">Supabase</span>
+                <span class="chip"><img src="https://cdn.simpleicons.org/vercel" alt="">Vercel</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- skills -->
-      <div class="skills rise">
-        <div class="cred-lab" style="margin:0">Skills</div>
-        <div class="chips">
-          <span class="chip">Figma</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span><span class="chip">After Effects</span><span class="chip">Premiere Pro</span><span class="chip">InDesign</span>
+  <!-- WORKS -->
+  <section class="works-sec">
+    <div class="inner">
+      <div class="works-head rise">
+        <h2>Selected Works</h2>
+        <span class="cnt">2024 — 2026 · 04</span>
+      </div>
+      <div class="works-grid">
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 01"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 01</span><span class="wcat">UX/UI</span></div>
+          <p class="wdesc">프로젝트에 대한 한 줄 소개를 적어주세요. 문제 정의부터 해결까지의 핵심을 담으면 좋아요.</p>
+          <div class="wtags"><span class="wtag">Figma</span><span class="wtag">반응형 웹</span><span class="wtag">개인</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 02"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 02</span><span class="wcat">Advertising</span></div>
+          <p class="wdesc">광고·홍보 캠페인 작업을 소개해 보세요. 역할과 성과(반응, 수상 등)를 함께 적으면 강해요.</p>
+          <div class="wtags"><span class="wtag">캠페인</span><span class="wtag">브랜딩</span><span class="wtag">팀</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 03"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 03</span><span class="wcat">Video</span></div>
+          <p class="wdesc">영상·콘텐츠 작업을 소개해 보세요. 기획 의도와 사용 툴을 적으면 좋습니다.</p>
+          <div class="wtags"><span class="wtag">Premiere Pro</span><span class="wtag">After Effects</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 04"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 04</span><span class="wcat">Editorial</span></div>
+          <p class="wdesc">편집·그래픽 작업을 소개해 보세요. 콘셉트와 결과물을 간결하게 정리하면 됩니다.</p>
+          <div class="wtags"><span class="wtag">InDesign</span><span class="wtag">Illustrator</span></div>
         </div>
       </div>
     </div>
@@ -172,13 +277,6 @@
     /* About reveal on scroll */
     gsap.utils.toArray('.rise').forEach((el)=>{
       gsap.to(el, { scrollTrigger:{ trigger:el, start:'top 90%' }, opacity:1, y:0, duration:0.8, ease:'power2.out' });
-    });
-
-    document.getElementById('fontbar').addEventListener('click', (e)=>{
-      const b = e.target.closest('button'); if(!b) return;
-      document.body.classList.toggle('figtree', b.dataset.font==='figtree');
-      document.querySelectorAll('#fontbar button').forEach(x=>x.classList.toggle('active', x===b));
-      ScrollTrigger.refresh();
     });
   </script>
 </body>
