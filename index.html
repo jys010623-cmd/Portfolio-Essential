@@ -71,12 +71,18 @@
   .yr{ color:#a2a29a; white-space:nowrap; text-align:right; padding-left:16px; font-variant-numeric:tabular-nums; }
   .skills{ margin-top:clamp(40px,5vw,70px); border-top:1px solid #e6e6e1; padding-top:34px; display:grid; grid-template-columns:200px 1fr; gap:24px; align-items:center; }
   .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid #dededa; border-radius:18px; padding:6px 14px; font-size:13px; color:#444; }
-  .chip img{ width:17px; height:17px; display:block; }
+  .chip{ display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; border:1px solid #ececec; border-radius:14px; padding:15px 10px 11px; font-size:11.5px; color:#444; background:#fff; box-shadow:0 3px 12px rgba(0,0,0,0.04); min-width:76px; text-align:center; }
+  .chip img{ width:28px; height:28px; display:block; object-fit:contain; }
   .skillset{ display:flex; flex-direction:column; gap:15px; }
   .skill-row{ display:grid; grid-template-columns:70px 1fr; gap:14px; align-items:center; min-height:44px; }
   .sk-cat{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; line-height:1.35; text-transform:uppercase; color:#9a9a92; white-space:nowrap; }
   @media(max-width:680px){ .skill-row{ grid-template-columns:1fr; gap:8px; } }
+  .skillgrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .skillcard{ background:#fff; border:1px solid #ececec; border-radius:18px; padding:26px 10px 16px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 4px 16px rgba(0,0,0,0.05); }
+  .skillcard img{ width:38px; height:38px; object-fit:contain; }
+  .skillcard span{ font-family:var(--disp); font-weight:600; font-size:13px; color:#333; }
+  @media(max-width:860px){ .skillgrid{ grid-template-columns:repeat(4,1fr); } }
+  @media(max-width:560px){ .skillgrid{ grid-template-columns:repeat(3,1fr); } }
   @media(max-width:680px){ .cred-grid{ grid-template-columns:1fr; } .skills{ grid-template-columns:1fr; gap:16px; } }
 
   /* ===== Works (featured large cards + preview grid) ===== */
