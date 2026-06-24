@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Works — combined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --disp:'Poppins'; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Pretendard','Inter',sans-serif; background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; }
+
+  .section{ padding:clamp(60px,9vw,140px) clamp(26px,5vw,72px); }
+  .inner{ max-width:1200px; margin:0 auto; }
+  .seclab{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#9a9a92; display:flex; align-items:center; gap:9px; }
+  .seclab::before{ content:''; width:7px; height:7px; background:var(--ink); display:inline-block; }
+  .seclab .count{ margin-left:auto; color:#bdbdb6; font-weight:600; letter-spacing:0.04em; }
+  .imgph{ background:#d6d6d0; position:relative; overflow:hidden; }
+  .imgph::after{ content:attr(data-l); position:absolute; left:15px; bottom:13px; font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.05em; color:#8c8c84; }
+
+  /* featured large cards */
+  .featured{ margin-top:38px; }
+  .big-row{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(26px,4vw,60px); align-items:center; padding:clamp(30px,4vw,48px) 0; border-top:1px solid #ececec; }
+  .big-row:last-child{ border-bottom:1px solid #ececec; }
+  .big-row.flip .txt{ order:2; }
+  .big-row .imgph{ aspect-ratio:16/10; border-radius:10px; }
+  .br-num{ font-family:var(--disp); font-weight:800; font-size:14px; color:#b8b8b2; letter-spacing:0.05em; }
+  .br-title{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.4vw,58px); letter-spacing:-0.03em; line-height:0.98; margin:8px 0 14px; }
+  .br-desc{ font-size:clamp(14px,1.5vw,16px); color:#555; line-height:1.7; max-width:42ch; }
+  .br-meta{ font-size:13px; color:#8a8a86; margin-top:14px; line-height:1.7; }
+  .br-view{ font-family:var(--disp); font-weight:600; font-size:13px; margin-top:20px; display:inline-block; border-bottom:1.5px solid var(--ink); padding-bottom:2px; cursor:pointer; }
+  @media(max-width:720px){ .big-row{ grid-template-columns:1fr; } .big-row.flip .txt{ order:0; } }
+
+  /* preview grid for the rest */
+  .more{ background:#f5f5f1; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
+  .pcard{ cursor:pointer; }
+  .pcard .imgph{ aspect-ratio:4/3; border-radius:10px; transition:transform .3s ease; }
+  .pcard:hover .imgph{ transform:translateY(-4px); }
+  .pcard .pt{ font-family:var(--disp); font-weight:700; font-size:17px; margin-top:13px; letter-spacing:-0.01em; }
+  .pcard .pc{ font-size:13px; color:#8a8a86; margin-top:3px; }
+  @media(max-width:720px){ .grid3{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:460px){ .grid3{ grid-template-columns:1fr; } }
+
+  .rise{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+  .rise.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+  <!-- FEATURED — large cards -->
+  <section class="section">
+    <div class="inner">
+      <div class="seclab rise">Selected works <span class="count">Featured</span></div>
+      <div class="featured">
+        <div class="big-row">
+          <div class="txt rise">
+            <div class="br-num">01 — Featured</div>
+            <div class="br-title">Mooday</div>
+            <div class="br-desc">사용자의 감정과 실시간 날씨를 기반으로 ‘지금 가기 좋은 장소’를 추천하는 앱. 한 번의 감정 선택으로 결과에 도달하도록 플로우를 단순화했습니다.</div>
+            <div class="br-meta">Role · Product Designer&nbsp;&nbsp;|&nbsp;&nbsp;App · UX/UI&nbsp;&nbsp;|&nbsp;&nbsp;2025</div>
+            <span class="br-view">View project →</span>
+          </div>
+          <div class="imgph rise" data-l="MOODAY — COVER 16:10"></div>
+        </div>
+        <div class="big-row flip">
+          <div class="txt rise">
+            <div class="br-num">02 — Featured</div>
+            <div class="br-title">Anti-Algorithm</div>
+            <div class="br-desc">알고리즘 바깥의 취향을 큐레이션하는 독립 브랜드의 아이덴티티. 강한 타이포와 CMYK 컬러로 ‘반(反)알고리즘’의 태도를 시각화했습니다.</div>
+            <div class="br-meta">Role · BX Designer&nbsp;&nbsp;|&nbsp;&nbsp;Branding&nbsp;&nbsp;|&nbsp;&nbsp;2025</div>
+            <span class="br-view">View project →</span>
+          </div>
+          <div class="imgph rise" data-l="ANTI-ALGORITHM — COVER 16:10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE — preview grid -->
+  <section class="section more">
+    <div class="inner">
+      <div class="seclab rise">More works <span class="count">06</span></div>
+      <div class="grid3">
+        <div class="pcard rise"><div class="imgph" data-l="SUMSUGUI"></div><div class="pt">Sumsugui</div><div class="pc">Web · UX</div></div>
+        <div class="pcard rise"><div class="imgph" data-l="NEKER"></div><div class="pt">Neker</div><div class="pc">Web Design</div></div>
+        <div class="pcard rise"><div class="imgph" data-l="POMME"></div><div class="pt">Pomme</div><div class="pc">Brand · Package</div></div>
+        <div class="pcard rise"><div class="imgph" data-l="DAYLOG"></div><div class="pt">Daylog</div><div class="pc">App · UI</div></div>
+        <div class="pcard rise"><div class="imgph" data-l="ODYSSEY"></div><div class="pt">Odyssey</div><div class="pc">Editorial</div></div>
+        <div class="pcard rise"><div class="imgph" data-l="VIEW"></div><div class="pt">View</div><div class="pc">Exhibition · Graphic</div></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, { threshold:0.14 });
+    document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>

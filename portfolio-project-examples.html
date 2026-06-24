@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project detail — examples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --disp:'Poppins'; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Pretendard','Inter',sans-serif; background:#dcdcd8; color:var(--ink); padding:40px 20px 90px; }
+  .wrap{ max-width:1140px; margin:0 auto; }
+  .h{ text-align:center; font-family:var(--disp); font-weight:800; font-size:26px; }
+  .lead{ text-align:center; color:#6a6a64; font-size:14px; margin:8px 0 40px; }
+  .ex{ margin-bottom:44px; }
+  .extag{ display:flex; align-items:baseline; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+  .exnum{ font-family:var(--disp); font-weight:800; font-size:15px; color:#8a8a86; }
+  .exname{ font-family:var(--disp); font-weight:700; font-size:18px; }
+  .exdesc{ font-size:13px; color:#6a6a64; }
+  .frame{ border-radius:12px; overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,0.14); background:var(--paper); }
+  .pad{ padding:clamp(32px,5vw,60px); }
+  .imgph{ background:#d6d6d0; position:relative; overflow:hidden; }
+  .imgph::after{ content:attr(data-l); position:absolute; left:15px; bottom:12px; font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.05em; color:#8c8c84; }
+  .ovh{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#9a9a92; margin-bottom:14px; }
+  .body-t{ font-size:clamp(15px,1.6vw,18px); line-height:1.75; color:#3c3c38; max-width:60ch; }
+
+  /* EX1 — full-bleed colored hero + overview + mockups */
+  .e1 .hero{ background:#15151a; color:#fff; padding:clamp(46px,7vw,90px) clamp(32px,5vw,60px); }
+  .e1 .pnum{ font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.08em; color:#8f8fa0; }
+  .e1 .pt{ font-family:var(--disp); font-weight:800; font-size:clamp(40px,7vw,92px); letter-spacing:-0.035em; line-height:0.98; margin:12px 0 16px; }
+  .e1 .one{ font-size:clamp(15px,1.8vw,20px); color:#c8c8d2; max-width:46ch; line-height:1.6; }
+  .e1 .ovgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; border-bottom:1px solid #ececec; padding-bottom:30px; }
+  .e1 .ov .k{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#9a9a92; margin-bottom:6px; }
+  .e1 .ov .v{ font-size:14px; color:#333; }
+  .e1 .shots{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+  .e1 .shots .imgph{ aspect-ratio:9/16; border-radius:10px; }
+  @media(max-width:680px){ .e1 .ovgrid{ grid-template-columns:1fr 1fr; } .e1 .shots{ grid-template-columns:1fr 1fr; } }
+
+  /* EX2 — editorial split */
+  .e2 .top{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(28px,4vw,56px); align-items:end; }
+  .e2 .pnum{ font-family:var(--disp); font-weight:700; font-size:13px; color:#9a9a92; letter-spacing:0.06em; }
+  .e2 .pt{ font-family:var(--disp); font-weight:800; font-size:clamp(34px,5vw,68px); letter-spacing:-0.03em; line-height:0.98; margin:10px 0 18px; }
+  .e2 .meta{ font-size:13.5px; color:#666; line-height:2; }
+  .e2 .meta span{ color:#a2a29a; display:inline-block; width:60px; }
+  .e2 .cover{ aspect-ratio:4/3; border-radius:8px; }
+  .e2 .row2{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,56px); margin-top:clamp(40px,5vw,70px); }
+  @media(max-width:680px){ .e2 .top, .e2 .row2{ grid-template-columns:1fr; } }
+
+  /* EX3 — long-scroll case study */
+  .e3 .heroimg{ aspect-ratio:16/8; border-radius:10px; position:relative; }
+  .e3 .badge{ position:absolute; left:24px; bottom:22px; color:#fff; }
+  .e3 .badge .pt{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,5vw,60px); letter-spacing:-0.03em; line-height:1; }
+  .e3 .badge .pc{ font-size:13px; opacity:0.9; margin-top:6px; }
+  .e3 .blk{ margin-top:clamp(40px,5vw,64px); }
+  .e3 .wide{ aspect-ratio:16/9; border-radius:10px; margin-top:22px; }
+  .e3 .two{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px; }
+  .e3 .two .imgph{ aspect-ratio:4/3; border-radius:10px; }
+  @media(max-width:680px){ .e3 .two{ grid-template-columns:1fr; } }
+
+  /* EX4 — minimal centered */
+  .e4{ text-align:center; }
+  .e4 .pnum{ font-family:var(--disp); font-weight:700; font-size:13px; color:#9a9a92; letter-spacing:0.08em; }
+  .e4 .pt{ font-family:var(--disp); font-weight:800; font-size:clamp(36px,6vw,84px); letter-spacing:-0.035em; margin:10px 0 16px; }
+  .e4 .metaline{ font-size:14px; color:#777; }
+  .e4 .metaline b{ color:#222; font-weight:600; }
+  .e4 .stack{ margin-top:clamp(40px,5vw,70px); display:flex; flex-direction:column; gap:18px; }
+  .e4 .stack .imgph{ aspect-ratio:16/9; border-radius:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="h">프로젝트 상세 페이지 예시</div>
+  <p class="lead">Works 다음에 올 케이스 스터디 시안 4종 · 레퍼런스 기반 · 내용/이미지는 샘플</p>
+
+  <!-- EX1 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 1</span><span class="exname">Color hero + 목업</span><span class="exdesc">컬러 풀블리드 표지 + 개요 + 디바이스 목업 (ref. Sujin Kim)</span></div>
+    <div class="frame e1">
+      <div class="hero">
+        <div class="pnum">01 — Featured project</div>
+        <div class="pt">Mooday</div>
+        <div class="one">감정과 실시간 날씨로 ‘지금 가기 좋은 장소’를 추천하는 앱</div>
+      </div>
+      <div class="pad">
+        <div class="ovgrid">
+          <div class="ov"><div class="k">Role</div><div class="v">Product Designer</div></div>
+          <div class="ov"><div class="k">Type</div><div class="v">개인 · App UX/UI</div></div>
+          <div class="ov"><div class="k">Year</div><div class="v">2025</div></div>
+          <div class="ov"><div class="k">Tools</div><div class="v">Figma · AE</div></div>
+        </div>
+        <div class="shots">
+          <div class="imgph" data-l="ONBOARDING"></div>
+          <div class="imgph" data-l="MOOD SELECT"></div>
+          <div class="imgph" data-l="RESULT MAP"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX2 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 2</span><span class="exname">Editorial split</span><span class="exdesc">좌측 제목·메타 + 우측 커버, 이후 Overview/Solution 2단 (ref. Yuna Park)</span></div>
+    <div class="frame pad e2">
+      <div class="top">
+        <div>
+          <div class="pnum">Project 01</div>
+          <div class="pt">Mooday</div>
+          <div class="meta"><div><span>Role</span>Product Designer</div><div><span>Type</span>App · UX/UI</div><div><span>Year</span>2025</div></div>
+        </div>
+        <div class="imgph cover" data-l="COVER 4:3"></div>
+      </div>
+      <div class="row2">
+        <div><div class="ovh">Overview</div><p class="body-t">복잡한 필터 대신 단 한 번의 감정 선택으로 결과에 도달하도록 플로우를 단순화했습니다.</p></div>
+        <div><div class="ovh">Solution</div><p class="body-t">날씨에 따라 변하는 무드 컬러 시스템을 설계해 매 순간 다른 분위기를 전달합니다.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX3 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 3</span><span class="exname">Long-scroll 케이스</span><span class="exdesc">대형 표지 이미지 + Overview/Process/Result 스택</span></div>
+    <div class="frame pad e3">
+      <div class="imgph heroimg" data-l="HERO 16:8"><div class="badge"><div class="pt">Mooday</div><div class="pc">App · UX/UI · 2025</div></div></div>
+      <div class="blk"><div class="ovh">Overview</div><p class="body-t">사용자의 감정과 실시간 날씨를 기반으로 장소를 추천하는 앱입니다. 선택의 피로를 줄이는 것이 핵심 목표였습니다.</p><div class="imgph wide" data-l="PROCESS 16:9"></div></div>
+      <div class="blk"><div class="ovh">Result</div><div class="two"><div class="imgph" data-l="SCREEN A"></div><div class="imgph" data-l="SCREEN B"></div></div></div>
+    </div>
+  </div>
+
+  <!-- EX4 -->
+  <div class="ex">
+    <div class="extag"><span class="exnum">예시 4</span><span class="exname">Minimal centered</span><span class="exdesc">가운데 제목·메타 + 풀폭 이미지 스택 (가장 깔끔)</span></div>
+    <div class="frame pad e4">
+      <div class="pnum">01 — Featured</div>
+      <div class="pt">Mooday</div>
+      <div class="metaline"><b>Product Designer</b> &nbsp;·&nbsp; App · UX/UI &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Figma · After Effects</div>
+      <div class="stack">
+        <div class="imgph" data-l="COVER 16:9"></div>
+        <div class="imgph" data-l="DETAIL 16:9"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

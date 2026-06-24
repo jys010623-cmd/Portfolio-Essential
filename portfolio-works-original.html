@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Works — original 2-column</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  :root{ --ink:#0c0c0c; --paper:#ffffff; --disp:'Poppins'; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Pretendard','Inter',sans-serif; background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  .inner{ max-width:1200px; margin:0 auto; }
+
+  .works-sec{ background:var(--paper); color:var(--ink); padding:clamp(40px,6vw,80px) clamp(26px,5vw,72px) clamp(70px,10vw,150px); }
+  .works-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    border-top:1px solid #e6e6e1; padding-top:clamp(40px,6vw,80px); margin-bottom:clamp(34px,4vw,56px); }
+  .works-head h2{ font-family:var(--disp); font-weight:800; font-size:clamp(30px,4.6vw,62px); letter-spacing:-0.025em; line-height:1; }
+  .works-head .cnt{ font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#9a9a92; }
+  .works-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(26px,3.4vw,52px); }
+  .work{ cursor:default; }
+  .work .thumb{ aspect-ratio:4/3; border-radius:6px; background:#d2d2cc; position:relative; overflow:hidden; transition:transform .5s ease; }
+  .work .thumb::after{ content:attr(data-tag); position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp); font-weight:700; font-size:13px; letter-spacing:0.2em; color:#a2a29a; }
+  .work:hover .thumb{ transform:translateY(-6px); }
+  .work .wmeta{ display:flex; justify-content:space-between; gap:12px; margin-top:16px; }
+  .work .wt{ font-family:var(--disp); font-weight:700; font-size:clamp(17px,1.9vw,22px); letter-spacing:-0.01em; }
+  .work .wcat{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#9a9a92; white-space:nowrap; padding-top:6px; }
+  .work .wdesc{ font-size:14px; color:#666; line-height:1.7; margin-top:8px; max-width:46ch; }
+  .work .wtags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+  .work .wtag{ border:1px solid #e3e3df; border-radius:16px; padding:4px 11px; font-size:12px; color:#777; }
+  @media(max-width:680px){ .works-grid{ grid-template-columns:1fr; } }
+
+  .rise{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease; }
+  .rise.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+  <!-- WORKS (original 2-column) -->
+  <section class="works-sec">
+    <div class="inner">
+      <div class="works-head rise">
+        <h2>Selected Works</h2>
+        <span class="cnt">2024 — 2026 · 04</span>
+      </div>
+      <div class="works-grid">
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 01"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 01</span><span class="wcat">UX/UI</span></div>
+          <p class="wdesc">프로젝트에 대한 한 줄 소개를 적어주세요. 문제 정의부터 해결까지의 핵심을 담으면 좋아요.</p>
+          <div class="wtags"><span class="wtag">Figma</span><span class="wtag">반응형 웹</span><span class="wtag">개인</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 02"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 02</span><span class="wcat">Advertising</span></div>
+          <p class="wdesc">광고·홍보 캠페인 작업을 소개해 보세요. 역할과 성과(반응, 수상 등)를 함께 적으면 강해요.</p>
+          <div class="wtags"><span class="wtag">캠페인</span><span class="wtag">브랜딩</span><span class="wtag">팀</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 03"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 03</span><span class="wcat">Video</span></div>
+          <p class="wdesc">영상·콘텐츠 작업을 소개해 보세요. 기획 의도와 사용 툴을 적으면 좋습니다.</p>
+          <div class="wtags"><span class="wtag">Premiere Pro</span><span class="wtag">After Effects</span></div>
+        </div>
+        <div class="work rise">
+          <div class="thumb" data-tag="PROJECT 04"></div>
+          <div class="wmeta"><span class="wt">프로젝트 제목 04</span><span class="wcat">Editorial</span></div>
+          <p class="wdesc">편집·그래픽 작업을 소개해 보세요. 콘셉트와 결과물을 간결하게 정리하면 됩니다.</p>
+          <div class="wtags"><span class="wtag">InDesign</span><span class="wtag">Illustrator</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, { threshold:0.16 });
+    document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
