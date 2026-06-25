@@ -43,7 +43,7 @@
 
   /* ===== About ===== */
   .about-sec{ background:var(--paper); color:var(--ink); padding:clamp(60px,9vw,140px) clamp(26px,5vw,72px); }
-  .inner{ max-width:1200px; margin:0 auto; }
+  .inner{ max-width:1440px; margin:0 auto; }
   .about-top{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; border-bottom:1px solid #e6e6e1; padding-bottom:18px;
     font-family:var(--disp); font-weight:700; font-size:12px; letter-spacing:0.06em; color:#9a9a92; text-transform:uppercase; }
 
@@ -71,12 +71,18 @@
   .yr{ color:#a2a29a; white-space:nowrap; text-align:right; padding-left:16px; font-variant-numeric:tabular-nums; }
   .skills{ margin-top:clamp(40px,5vw,70px); border-top:1px solid #e6e6e1; padding-top:34px; display:grid; grid-template-columns:200px 1fr; gap:24px; align-items:center; }
   .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid #dededa; border-radius:18px; padding:6px 14px; font-size:13px; color:#444; }
-  .chip img{ width:17px; height:17px; display:block; }
+  .chip{ display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; border:1px solid #ececec; border-radius:14px; padding:15px 10px 11px; font-size:11.5px; color:#444; background:#fff; box-shadow:0 3px 12px rgba(0,0,0,0.04); min-width:76px; text-align:center; }
+  .chip img{ width:28px; height:28px; display:block; object-fit:contain; }
   .skillset{ display:flex; flex-direction:column; gap:15px; }
   .skill-row{ display:grid; grid-template-columns:70px 1fr; gap:14px; align-items:center; min-height:44px; }
   .sk-cat{ font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:0.12em; line-height:1.35; text-transform:uppercase; color:#9a9a92; white-space:nowrap; }
   @media(max-width:680px){ .skill-row{ grid-template-columns:1fr; gap:8px; } }
+  .skillgrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .skillcard{ background:#fff; border:1px solid #ececec; border-radius:18px; padding:26px 10px 16px; display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:0 4px 16px rgba(0,0,0,0.05); }
+  .skillcard img{ width:38px; height:38px; object-fit:contain; }
+  .skillcard span{ font-family:var(--disp); font-weight:600; font-size:13px; color:#333; }
+  @media(max-width:860px){ .skillgrid{ grid-template-columns:repeat(4,1fr); } }
+  @media(max-width:560px){ .skillgrid{ grid-template-columns:repeat(3,1fr); } }
   @media(max-width:680px){ .cred-grid{ grid-template-columns:1fr; } .skills{ grid-template-columns:1fr; gap:16px; } }
 
   /* ===== Works (featured large cards + preview grid) ===== */
@@ -149,7 +155,7 @@
   <!-- ABOUT -->
   <section class="about-sec">
     <div class="inner">
-      <div class="about-top rise"><span>About</span><span>J.Youngsim — Advertising &amp; UX/UI Designer</span><span>Seoul · 2024—2026</span></div>
+      <div class="about-top rise"><span>About</span><span>J.Youngsim — Advertising &amp; UX/UI Designer</span><span>2026</span></div>
 
       <!-- intro: photo + statement + key meta -->
       <div class="intro-grid">
@@ -261,4 +267,126 @@
           </div>
           <div class="imgph rise" data-l="MOODAY — COVER 16:10"></div>
         </div>
-        <div class="big-row
+        <div class="big-row flip">
+          <div class="txt rise">
+            <div class="br-num">02 — Featured</div>
+            <div class="br-title">HOLO</div>
+            <div class="br-desc">알고리즘 바깥의 취향을 큐레이션하는 독립 브랜드의 아이덴티티. 강한 타이포와 CMYK 컬러로 ‘반(反)알고리즘’의 태도를 시각화했습니다.</div>
+            <div class="br-meta">Role · BX Designer&nbsp;&nbsp;|&nbsp;&nbsp;App&nbsp;&nbsp;|&nbsp;&nbsp;2026</div>
+            <span class="br-view" data-open="pd-holo">View project →</span>
+          </div>
+          <div class="imgph rise" data-l="ANTI-ALGORITHM — COVER 16:10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS — the rest as a preview grid -->
+  <section class="wks-more">
+    <div class="inner">
+      <div class="seclab rise">More works <span class="count">12</span></div>
+      <div class="filterbar rise" id="filterbar">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="web">Web</button>
+        <button data-filter="banner">Banner</button>
+      </div>
+      <div class="grid3" id="worksGrid">
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 01"></div><div class="pt">웹 프로젝트 01</div><div class="pc">Web · 반응형</div></div>
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 02"></div><div class="pt">웹 프로젝트 02</div><div class="pc">Web · 랜딩페이지</div></div>
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 03"></div><div class="pt">웹 프로젝트 03</div><div class="pc">Web Design</div></div>
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 04"></div><div class="pt">웹 프로젝트 04</div><div class="pc">Web · UI</div></div>
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 05"></div><div class="pt">웹 프로젝트 05</div><div class="pc">Web · 반응형</div></div>
+        <div class="pcard rise" data-cat="web"><div class="imgph" data-l="WEB 06"></div><div class="pt">웹 프로젝트 06</div><div class="pc">Web Design</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 01"></div><div class="pt">배너 작업 01</div><div class="pc">Banner</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 02"></div><div class="pt">배너 작업 02</div><div class="pc">Banner · 상세페이지</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 03"></div><div class="pt">배너 작업 03</div><div class="pc">Banner · 이벤트</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 04"></div><div class="pt">배너 작업 04</div><div class="pc">Banner</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 05"></div><div class="pt">배너 작업 05</div><div class="pc">Banner · 프로모션</div></div>
+        <div class="pcard rise" data-cat="banner"><div class="imgph" data-l="BANNER 06"></div><div class="pt">배너 작업 06</div><div class="pc">Banner · SNS</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT DETAIL OVERLAYS (example 4 — minimal centered) -->
+  <div class="pdetail" id="pd-mystar" role="dialog" aria-modal="true" aria-label="마이 스타 캘린더 상세">
+    <button class="pd-close" data-close aria-label="뒤로 가기"><span class="ar">←</span> Back</button>
+    <div class="pd-inner">
+      <div class="pd-num">01 — Featured</div>
+      <div class="pd-title">마이 스타 캘린더</div>
+      <div class="pd-meta"><b>Product Designer</b> &nbsp;·&nbsp; WebApp · UX/UI &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Figma · After Effects</div>
+      <div class="pd-stack">
+        <div class="imgph" data-l="COVER 16:9"></div>
+        <div class="imgph" data-l="MAIN FLOW 16:9"></div>
+        <div class="imgph" data-l="DETAIL 16:9"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdetail" id="pd-holo" role="dialog" aria-modal="true" aria-label="HOLO 상세">
+    <button class="pd-close" data-close aria-label="뒤로 가기"><span class="ar">←</span> Back</button>
+    <div class="pd-inner">
+      <div class="pd-num">02 — Featured</div>
+      <div class="pd-title">HOLO</div>
+      <div class="pd-meta"><b>BX Designer</b> &nbsp;·&nbsp; App &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Illustrator · Photoshop</div>
+      <div class="pd-stack">
+        <div class="imgph" data-l="COVER 16:9"></div>
+        <div class="imgph" data-l="IDENTITY 16:9"></div>
+        <div class="imgph" data-l="APPLICATION 16:9"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const unitBig  = 'J.Youngsim <span class="sep">—</span> Portfolio <span class="sep">—</span> ';
+    const unitThin = 'Brand &amp; UX &nbsp;·&nbsp; Editorial &nbsp;·&nbsp; UI/UX &nbsp;·&nbsp; ';
+    document.getElementById('segBig').innerHTML  = unitBig.repeat(8);
+    document.getElementById('segThin').innerHTML = unitThin.repeat(10);
+
+    gsap.set('#lineBig',  { xPercent:-12 });
+    gsap.set('#lineThin', { xPercent:-40 });
+
+    const tl = gsap.timeline({
+      scrollTrigger:{ trigger:'#scrollWrap', start:'top top', end:'bottom bottom', pin:'#stage', scrub:0.6 }
+    });
+    tl.to('#stage', { backgroundColor:'#ffffff', ease:'none', duration:1 }, 0);
+    tl.to('#lineBig',  { xPercent:-62, ease:'none', duration:1 }, 0);
+    tl.to('#lineThin', { xPercent:-8,  ease:'none', duration:1 }, 0);
+    tl.to('#cue', { autoAlpha:0, ease:'none', duration:0.4 }, 0);
+
+    /* About reveal on scroll */
+    gsap.utils.toArray('.rise').forEach((el)=>{
+      gsap.to(el, { scrollTrigger:{ trigger:el, start:'top 90%' }, opacity:1, y:0, duration:0.8, ease:'power2.out' });
+    });
+
+    /* More works — category filter toggle */
+    const fbar = document.getElementById('filterbar');
+    const cards = document.querySelectorAll('#worksGrid .pcard');
+    fbar.addEventListener('click', (e)=>{
+      const b = e.target.closest('button'); if(!b) return;
+      const f = b.dataset.filter;
+      fbar.querySelectorAll('button').forEach(x=>x.classList.toggle('active', x===b));
+      cards.forEach(c=>{
+        const hide = (f!=='all' && c.dataset.cat!==f);
+        c.classList.toggle('hide', hide);
+        if(!hide){ c.style.opacity='1'; c.style.transform='none'; }
+      });
+    });
+
+    /* project detail overlays — open on "View project", close on ×/ESC */
+    const overlays = document.querySelectorAll('.pdetail');
+    function closeDetail(){ overlays.forEach(o=>o.classList.remove('open')); document.body.style.overflow=''; }
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const ov = document.getElementById(btn.dataset.open);
+        if(ov){ ov.scrollTop=0; ov.classList.add('open'); document.body.style.overflow='hidden'; }
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', closeDetail));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDetail(); });
+  </script>
+</body>
+</html>
